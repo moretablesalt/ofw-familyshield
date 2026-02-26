@@ -1,0 +1,67 @@
+/* ===== SECTION ===== */
+.tips {
+  background: linear-gradient(180deg, #1b86b8, #197fb0);
+  padding: 80px 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  color: white;
+}
+
+/* ===== CONTAINER ===== */
+.tips-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ===== TITLE ===== */
+.tips-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 36px;
+}
+
+/* ===== GRID ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+/* ===== TIP CARD ===== */
+.tip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  border-radius: 8px;
+
+  /* glass effect */
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  backdrop-filter: blur(6px);
+
+  transition: 0.2s ease;
+}
+
+.tip:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* icon */
+.icon {
+  font-size: 16px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}

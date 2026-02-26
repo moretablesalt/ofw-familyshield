@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+}
+
+.premium-summary {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.premium-total {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.premium-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}

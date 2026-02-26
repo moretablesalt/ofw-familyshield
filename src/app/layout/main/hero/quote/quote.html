@@ -1,0 +1,121 @@
+<h1>Customize your package</h1>
+<div class="subtitle">
+  Build your family’s safety net with structured protection levels.
+</div>
+
+<!-- STEP 1 -->
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div>
+      <div class="step-title">What’s your civil status?</div>
+      <div class="step-desc">
+        This helps us know who can be included in your coverage.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:14px;">
+    <select (change)="status.set($any($event.target).value)">
+      <option value="">Select civil status *</option>
+      <option value="Married">Married</option>
+      <option value="Single">Single</option>
+      <option value="Widowed">Widowed</option>
+    </select>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div>
+      <div class="step-title">Customize Your Plan</div>
+      <div class="step-desc">
+        Choose your family and personal protection levels.
+      </div>
+    </div>
+  </div>
+
+  <!-- FAMILY -->
+  <div class="option-row">
+    <div class="option-label">
+      <div class="option-label-title">Family Protection Level</div>
+      <div class="option-label-sub">
+        Level 1 starts at PHP 1,000 (increments of 500)
+      </div>
+    </div>
+
+    <div class="option-control">
+      <select (change)="familyLevel.set(+($any($event.target).value))">
+        <option value="1">Level 1 – Basic</option>
+        <option value="2">Level 2 – Enhanced</option>
+        <option value="3">Level 3 – Extended</option>
+        <option value="4">Level 4 – Maximum Safety Net</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- PERSONAL -->
+  <div class="option-row">
+    <div class="option-label">
+      <div class="option-label-title">
+        OFW Personal Protection (Optional)
+      </div>
+      <div class="option-label-sub">
+        PHP 800 per level (0–2)
+      </div>
+    </div>
+
+    <div class="option-control">
+      <select (change)="personalLevel.set(+($any($event.target).value))">
+        <option value="0">None</option>
+        <option value="1">Level 1 – 100,000</option>
+        <option value="2">Level 2 – 200,000</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- BREAKDOWN -->
+  <div class="breakdown-box">
+
+    @if (!status()) {
+      Select civil status to see coverage summary.
+    }
+
+    @if (breakdown()) {
+      @for (section of breakdown(); track section.title; let last = $last) {
+
+        <div class="section-title">
+          {{ section.title }}
+        </div>
+
+        @for (row of section.rows; track row.label) {
+          <div class="breakdown-row">
+            <span>{{ row.label }}</span>
+            <span>PHP {{ row.amount | number }}</span>
+          </div>
+        }
+
+        @if (!last) {
+          <div class="breakdown-divider"></div>
+        }
+      }
+    }
+
+  </div>
+
+</div>
+
+<!-- TOTAL -->
+<div class="total">
+  Total: PHP {{ totalPremium() | number }}
+</div>
+
+<button class="primary" (click)="validate()">
+  Buy Online PHP {{ totalPremium() | number }} for year 1
+</button>
+
+@if (error()) {
+  <div class="error">{{ error() }}</div>
+}

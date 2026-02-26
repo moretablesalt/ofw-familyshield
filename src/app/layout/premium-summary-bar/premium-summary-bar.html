@@ -1,0 +1,23 @@
+<div class="premium-summary">
+  <div class="premium-content">
+
+    <div class="premium-total">
+      Total Premium USD $ {{ grossUsd() | number:'1.2-2' }}
+    </div>
+
+    <a class="premium-link" (click)="openModal()">
+      Premium Breakdown
+    </a>
+
+  </div>
+</div>
+
+<app-premium-breakdown-modal
+  [visible]="showModal()"
+  [grossUsd]="grossUsd()"
+  [basicUsd]="basicUsd()"
+  [dstUsd]="dstUsd()"
+  [premTaxUsd]="premTaxUsd()"
+  [lgtUsd]="lgtUsd()"
+  (close)="closeModal()">
+</app-premium-breakdown-modal>

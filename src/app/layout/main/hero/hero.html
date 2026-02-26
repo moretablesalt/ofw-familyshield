@@ -1,0 +1,36 @@
+<section class="hero">
+  <picture class="hero-bg">
+    <!-- Mobile image -->
+    <source
+      srcset="images/home/hero/hero-mobile.webp"
+      media="(max-width: 768px)"
+    />
+
+    <!-- Desktop image (default fallback) -->
+    <img
+      src="images/home/hero/hero.webp"
+      width="375"
+      height="413"
+      alt="Happy family sitting together"
+      class="hero-image"
+      fetchpriority="high"
+    />
+  </picture>
+
+  <!-- Left text -->
+  <div class="hero-text">
+    <h1>Insurance Protection for OFWs and Family</h1>
+    <p>
+      Tell us a few details so we can generate the right quote for your contract.
+    </p>
+  </div>
+
+  <!-- Right card -->
+  @if (isMobile()) {
+    @defer (on idle) {
+      <app-quote></app-quote>
+    }
+  } @else {
+    <app-quote></app-quote>
+  }
+</section>

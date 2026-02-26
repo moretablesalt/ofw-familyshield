@@ -1,0 +1,36 @@
+@if (visible()) {
+  <div class="backdrop" (click)="close.emit()">
+
+    <div class="modal" (click)="$event.stopPropagation()">
+      <h3>Premium Breakdown (USD)</h3>
+
+      <div class="row">
+        <span>Basic Premium</span>
+        <span>$ {{ basicUsd() | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="row">
+        <span>DST (Converted)</span>
+        <span>$ {{ dstUsd() | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="row">
+        <span>Premium Tax</span>
+        <span>$ {{ premTaxUsd() | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="row">
+        <span>LGT</span>
+        <span>$ {{ lgtUsd() | number:'1.2-2' }}</span>
+      </div>
+
+      <hr />
+
+      <div class="row total">
+        <strong>Total</strong>
+        <strong>$ {{ grossUsd() | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+
+  </div>
+}

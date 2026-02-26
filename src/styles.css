@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/assets/NunitoSans-Variable.woff2') format('woff2');
+  font-weight: 100 900; /* for variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset / Normalize */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* remove default spacing */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  max-width: 1750px;
+  margin-inline: auto;
+  font-family: 'Nunito Sans', sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Colors */
+  --color-primary: #0086CD;
+  --color-secondary: #0072D8;
+  --color-black: #4B4B4B;
+  --color-gold: #FDB913;
+  --color-white: #FFF;
+  --color-text-grey: #667085;
+  --border: #e5e7eb;
+}
+
+
