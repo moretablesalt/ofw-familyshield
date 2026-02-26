@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './benefits.scss',
 })
 export class Benefits {
-
+  activeTab: 'package1' | 'package2' | 'package3' = 'package1';
 }
