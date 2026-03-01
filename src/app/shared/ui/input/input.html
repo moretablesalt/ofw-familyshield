@@ -1,0 +1,12 @@
+@let inputId = id();
+<div class="field" [class.error]="hasError()">
+  <input [id]="inputId"
+         [type]="type()"
+         [formField]="fieldTree()" placeholder=" " />
+
+  <label [for]="inputId">{{ label() }}</label>
+</div>
+@if(hasError()) {
+  <app-field-error-message [errors]="field().errors()"></app-field-error-message>
+}
+

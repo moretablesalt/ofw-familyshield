@@ -1,0 +1,15 @@
+@let selectId = id();
+<div class="field" [class.error]="hasError()">
+  <select [id]="selectId"
+  [formField]="fieldTree()">
+    <option value="" disabled selected>{{label()}}</option>
+    @for(option of options(); track option; let i = $index) {
+      <option value="{{ option.value }}">{{ option.description }}</option>
+    }
+  </select>
+
+  <label [for]="selectId">{{ label() }}</label>
+</div>
+@if(hasError()) {
+  <app-field-error-message [errors]="field().errors()"></app-field-error-message>
+}
