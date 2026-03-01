@@ -1,0 +1,96 @@
+<section>
+  <div class="title-container">
+    <h2>Help us complete your OFW policy details</h2>
+    <p>Your information ensures your family receives full benefits with no delays.</p>
+  </div>
+
+  <form action="">
+    <div class="card">
+      <div class="card-title">🏠 Primary Address</div>
+
+      <!--6th row-->
+      <div class="row">
+        <app-drop-down
+          [id]="'province'"
+          [fieldTree]="form.address.province"
+          [label]="'Province'"
+          [options]="provinceOptions">
+        </app-drop-down>
+
+        <app-drop-down
+          [id]="'city'"
+          [fieldTree]="form.address.city"
+          [label]="'City'"
+          [options]="cityOptions">
+        </app-drop-down>
+      </div>
+
+      <!--7th row-->
+      <div class="row">
+        <app-drop-down
+          [id]="'barangay'"
+          [fieldTree]="form.address.barangay"
+          [label]="'Barangay'"
+          [options]="barangayOptions">
+        </app-drop-down>
+
+        <app-drop-down
+          [id]="'zipCode'"
+          [fieldTree]="form.address.zipCode"
+          [label]="'Zip Code'"
+          [options]="zipCodeOptions">
+        </app-drop-down>
+      </div>
+
+      <div class="row">
+        <app-input
+          [id]="'street'"
+          [fieldTree]="form.address.street"
+          [label]="'Unit No. / Building No. / Street Address'" >
+        </app-input>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-title">📞 Contact Information</div>
+
+      <div class="row">
+        <app-input
+          [id]="'email'"
+          [fieldTree]="form.email"
+          [label]="'Email'" >
+        </app-input>
+
+        <app-input
+          [id]="'mobileNumber'"
+          [fieldTree]="form.mobile"
+          [label]="'Mobile Number'" >
+        </app-input>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-title">🪪 Passport Details</div>
+
+      <div class="row">
+        <app-input
+          [id]="'passportNo'"
+          [fieldTree]="form.passportNo"
+          [label]="'Passport Number'" >
+        </app-input>
+
+        <app-input
+          [id]="'passportExpirationDate'"
+          [fieldTree]="form.passportExpiryDate"
+          [label]="'Expiration Date'"
+          [type]="'date'">
+        </app-input>
+      </div>
+
+    </div>
+    <button type="button" class="btn" (click)="continue($event)">Continue</button>
+  </form>
+
+</section>

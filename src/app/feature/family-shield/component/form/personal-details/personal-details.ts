@@ -56,7 +56,7 @@ export class PersonalDetails {
 
     // Fake delay (800ms–1200ms feels natural)
     setTimeout(() => {
-      this.router.navigate(['/direct/form/contact-info']).then(() => this.overlayService.hide());
+      this.router.navigate(['/family-shield/form/contact-info']).then(() => this.overlayService.hide());
     }, 900);
   }
 }

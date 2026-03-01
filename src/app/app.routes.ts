@@ -25,9 +25,13 @@ export const routes: Routes = [
           {
             path: 'personal-details',
             loadComponent: () =>
-              import('./feature/family-shield/component/form/personal-details/personal-details').then((m) => m.PersonalDetails,
-              ),
+              import('./feature/family-shield/component/form/personal-details/personal-details').then((m) => m.PersonalDetails),
           },
+          {
+            path: 'contact-info',
+            loadComponent: () =>
+              import('./feature/family-shield/component/form/contact-info/contact-info').then((m) => m.ContactInfo),
+          }
         ],
       },
     ],

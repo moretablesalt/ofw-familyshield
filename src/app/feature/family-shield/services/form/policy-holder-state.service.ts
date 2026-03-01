@@ -130,4 +130,14 @@ export class PolicyHolderStateService {
       return { description: year, value: year };
     });
   })();
+
+  readonly PROVINCE_OPTIONS: SelectOption[] = [
+    { description: 'Cagayan Valley', value: 'CAGAYAN VALLEY' },
+  ];
+
+  readonly CITY_OPTIONS: SelectOption[] = [{ description: 'Manila', value: 'MANILA' }];
+
+  readonly BARANGAY_OPTIONS: SelectOption[] = [{ description: 'Brgy. 1', value: 'BRGY. 1' }];
+
+  readonly ZIPCODE_OPTIONS: SelectOption[] = [{ description: '1000', value: '1000' }];
 }
