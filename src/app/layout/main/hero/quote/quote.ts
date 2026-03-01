@@ -1,8 +1,8 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
-import { QuoteCalculatorService } from './quote-calculator.service';
 import { CivilStatus } from '../../../../core/enum/civil-status.enum';
+import { QuoteStore } from '../../../../feature/family-shield/store/quote.store';
 
 @Component({
   selector: 'app-quote',
@@ -11,31 +11,44 @@ import { CivilStatus } from '../../../../core/enum/civil-status.enum';
   imports: [DecimalPipe],
 })
 export class Quote {
-  private calculator = inject(QuoteCalculatorService);
+  private store = inject(QuoteStore);
   private router = inject(Router);
 
-  status = signal<CivilStatus | null>(null);
-  familyLevel = signal<number>(1);
-  personalLevel = signal<number>(0);
-  error = signal<string>('');
+  readonly state = this.store.state;
+  readonly totalPremium = this.store.totalPremium;
+  readonly breakdown = this.store.breakdown;
 
-  totalPremium = computed(() =>
-    this.calculator.calculateTotalPremium(this.familyLevel(), this.personalLevel()),
-  );
+  protected readonly CivilStatus = CivilStatus;
 
-  breakdown = computed(() =>
-    this.status()
-      ? this.calculator.buildBreakdown(this.status()!, this.familyLevel(), this.personalLevel())
-      : null,
-  );
+  // ===============================
+  // CLEAN EVENT HANDLERS
+  // ===============================
+
+  onCivilStatusChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const value = select.value as CivilStatus;
+
+    if (!value) return;
+
+    this.store.setCivilStatus(value);
+  }
+
+  onFamilyLevelChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const level = Number(select.value);
+
+    this.store.setFamilyLevel(level);
+  }
+
+  onPersonalLevelChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const level = Number(select.value);
+
+    this.store.setPersonalLevel(level);
+  }
 
   validate() {
-    if (!this.status()) {
-      this.error.set('Please select civil status.');
-      return;
-    }
-
-    this.error.set('');
+    if (!this.store.isValid()) return;
     this.router.navigate(['/family-shield/form']);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { PremiumBreakdownModal } from './premium-breakdown-modal/premium-breakdown-modal';
 import { DecimalPipe } from '@angular/common';
-// import { PremiumBreakdownService } from '../../feature/direct/services/premium-breakdown.service';
+import { PremiumBreakdownService } from '../../feature/family-shield/services/premium-breakdown.service';
 
 @Component({
   selector: 'app-premium-summary-bar',
@@ -10,17 +10,17 @@ import { DecimalPipe } from '@angular/common';
   styleUrl: './premium-summary-bar.scss',
 })
 export class PremiumSummaryBar {
-  // private breakdown = inject(PremiumBreakdownService);
+  private breakdown = inject(PremiumBreakdownService);
 
   showModal = signal(false);
 
   // INPUTS (later replace with service values)
-  grossUsd = signal(500);
+  grossPremium = this.breakdown.grossPremiumPhp;
 
-  dstUsd = signal(500);
-  premTaxUsd = signal(500);
-  basicUsd = signal(500);
-  lgtUsd = signal(500);
+  dst = this.breakdown.dstPhp;
+  premTax = this.breakdown.premiumTaxPhp;
+  basicPremium = this.breakdown.basicPremiumPhp;
+  lgt = this.breakdown.lgtPhp;
 
   /* ===============================
      MODAL CONTROL

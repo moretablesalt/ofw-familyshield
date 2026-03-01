@@ -15,12 +15,15 @@
     </div>
   </div>
 
-  <div style="margin-top:14px;">
-    <select (change)="status.set($any($event.target).value)">
+  <div class="mt-14">
+    <select
+      [value]="state().civilStatus ?? ''"
+      (change)="onCivilStatusChange($event)"
+    >
       <option value="">Select civil status *</option>
-      <option value="Married">Married</option>
-      <option value="Single">Single</option>
-      <option value="Widowed">Widowed</option>
+      <option [value]="CivilStatus.Married">Married</option>
+      <option [value]="CivilStatus.Single">Single</option>
+      <option [value]="CivilStatus.Widowed">Widowed</option>
     </select>
   </div>
 </div>
@@ -47,7 +50,10 @@
     </div>
 
     <div class="option-control">
-      <select (change)="familyLevel.set(+($any($event.target).value))">
+      <select
+        [value]="state().familyLevel"
+        (change)="onFamilyLevelChange($event)"
+      >
         <option value="1">Level 1 – Basic</option>
         <option value="2">Level 2 – Enhanced</option>
         <option value="3">Level 3 – Extended</option>
@@ -68,7 +74,10 @@
     </div>
 
     <div class="option-control">
-      <select (change)="personalLevel.set(+($any($event.target).value))">
+      <select
+        [value]="state().personalLevel"
+        (change)="onPersonalLevelChange($event)"
+      >
         <option value="0">None</option>
         <option value="1">Level 1 – 100,000</option>
         <option value="2">Level 2 – 200,000</option>
@@ -79,7 +88,7 @@
   <!-- BREAKDOWN -->
   <div class="breakdown-box">
 
-    @if (!status()) {
+    @if (!state().civilStatus) {
       Select civil status to see coverage summary.
     }
 
@@ -104,7 +113,6 @@
     }
 
   </div>
-
 </div>
 
 <!-- TOTAL -->
@@ -115,7 +123,3 @@
 <button class="primary" (click)="validate()">
   Buy Online PHP {{ totalPremium() | number }} for year 1
 </button>
-
-@if (error()) {
-  <div class="error">{{ error() }}</div>
-}

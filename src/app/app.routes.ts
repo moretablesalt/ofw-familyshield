@@ -13,7 +13,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'form', pathMatch: 'full' },
       {
         path: 'form',
-        loadComponent: () => import('./feature/family-shield/form/form').then(m => m.Form),
+        loadComponent: () => import('./feature/family-shield/component/form/form').then(m => m.Form),
         // children: [
         //   {
         //     path: '',
