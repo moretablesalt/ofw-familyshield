@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormService } from '../../../services/form.service';
+import { FormService } from '../../../services/form/form.service';
 import { Router } from '@angular/router';
 import { DropDown, SelectOption } from '../../../../../shared/ui/drop-down/drop-down';
 import { Input } from '../../../../../shared/ui/input/input';
 import { OverlayService } from '../../../../../shared/ui/overlay/overlay.service';
+import { PolicyHolderStateService } from '../../../services/form/policy-holder-state.service';
 
 @Component({
   selector: 'app-personal-details',
@@ -13,10 +14,11 @@ import { OverlayService } from '../../../../../shared/ui/overlay/overlay.service
 })
 export class PersonalDetails {
   formService = inject(FormService);
+  private readonly state = inject(PolicyHolderStateService);
   router = inject(Router);
   overlayService = inject(OverlayService);
 
-  model = this.formService.formModel;
+  model = this.state.formModel;
 
   form = this.formService.form.personalInfo;
 
@@ -25,11 +27,11 @@ export class PersonalDetails {
     { description: 'Female', value: 'FEMALE' },
   ];
 
-  monthOptions = this.formService.MONTH_OPTIONS;
-  dayOptions = this.formService.DAY_OPTIONS;
-  yearOptions = this.formService.YEAR_OPTIONS;
-  civilStatusOptions = this.formService.CIVIL_STATUS_OPTIONS;
-  nationalityOptions = this.formService.NATIONALITY_OPTIONS;
+  monthOptions = this.state.MONTH_OPTIONS;
+  dayOptions = this.state.DAY_OPTIONS;
+  yearOptions = this.state.YEAR_OPTIONS;
+  civilStatusOptions = this.state.CIVIL_STATUS_OPTIONS;
+  nationalityOptions = this.state.NATIONALITY_OPTIONS;
 
   protected continue(event: Event) {
     event.preventDefault();
