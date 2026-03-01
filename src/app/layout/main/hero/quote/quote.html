@@ -17,7 +17,7 @@
 
   <div class="mt-14">
     <select
-      [value]="state().civilStatus ?? ''"
+      [value]="request().civilStatus ?? ''"
       (change)="onCivilStatusChange($event)"
     >
       <option value="">Select civil status *</option>
@@ -51,7 +51,7 @@
 
     <div class="option-control">
       <select
-        [value]="state().familyLevel"
+        [value]="request().familyLevel"
         (change)="onFamilyLevelChange($event)"
       >
         <option value="1">Level 1 – Basic</option>
@@ -75,7 +75,7 @@
 
     <div class="option-control">
       <select
-        [value]="state().personalLevel"
+        [value]="request().personalLevel"
         (change)="onPersonalLevelChange($event)"
       >
         <option value="0">None</option>
@@ -88,7 +88,7 @@
   <!-- BREAKDOWN -->
   <div class="breakdown-box">
 
-    @if (!state().civilStatus) {
+    @if (!request().civilStatus) {
       Select civil status to see coverage summary.
     }
 

@@ -1,123 +1,63 @@
 import { Injectable } from '@angular/core';
 import { QUOTE_PRICING } from '../../../core/config/quote-pricing.config';
-import { CivilStatus } from '../../../core/enum/civil-status.enum';
-
-export interface BreakdownRow {
-  label: string;
-  amount: number;
-}
-
-export interface BreakdownSection {
-  title: string;
-  rows: BreakdownRow[];
-}
-
+import { QuoteRequest } from '../model/quote-request.model';
+import { QuoteResult } from '../model/quote-result.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuoteCalculatorService {
-  // =====================================================
-  // FAMILY COVERAGE CALCULATIONS
-  // =====================================================
 
-  calculateSpouseCoverage(level: number): number {
-    return QUOTE_PRICING.spouseBase + (level - 1) * QUOTE_PRICING.spouseIncrement;
-  }
-
-  calculateDependentCoverage(level: number): number {
-    return QUOTE_PRICING.dependentBase + (level - 1) * QUOTE_PRICING.dependentIncrement;
-  }
-
-  // =====================================================
-  // PERSONAL COVERAGE
-  // =====================================================
-
-  calculatePersonalCoverage(level: number): number {
-    return level * QUOTE_PRICING.personalCoveragePerLevel;
-  }
-
-  // =====================================================
-  // PREMIUM CALCULATIONS
-  // =====================================================
-
-  calculateFamilyPremium(level: number): number {
-    return QUOTE_PRICING.familyBasePremium + (level - 1) * QUOTE_PRICING.familyIncrementPremium;
-  }
-
-  calculatePersonalPremium(level: number): number {
-    return level * QUOTE_PRICING.personalPremiumPerLevel;
-  }
-
-  calculateTotalPremium(familyLevel: number, personalLevel: number): number {
-    return this.calculateFamilyPremium(familyLevel) + this.calculatePersonalPremium(personalLevel);
-  }
-
-  // =====================================================
-  // BREAKDOWN BUILDER
-  // =====================================================
-
-  buildBreakdown(
-    civilStatus: CivilStatus,
-    familyLevel: number,
-    personalLevel: number,
-  ): BreakdownSection[] | null {
-    if (!civilStatus) return null;
-
-    const sections: BreakdownSection[] = [];
+  calculate(request: QuoteRequest): QuoteResult {
+    const { familyLevel, personalLevel } = request;
 
     const spouseCoverage = this.calculateSpouseCoverage(familyLevel);
     const dependentCoverage = this.calculateDependentCoverage(familyLevel);
     const personalCoverage = this.calculatePersonalCoverage(personalLevel);
 
-    const familyRows: BreakdownRow[] = [];
+    const familyPremium = this.calculateFamilyPremium(familyLevel);
+    const personalPremium = this.calculatePersonalPremium(personalLevel);
 
-    switch (civilStatus) {
-      case CivilStatus.Married:
-        familyRows.push({
-          label: 'Spouse',
-          amount: spouseCoverage,
-        });
-        familyRows.push({
-          label: `Children (each, up to ${QUOTE_PRICING.maxChildren})`,
-          amount: dependentCoverage,
-        });
-        break;
+    return {
+      spouseCoverage,
+      dependentCoverage,
+      personalCoverage,
+      familyPremium,
+      personalPremium,
+      totalPremium: familyPremium + personalPremium,
+    };
+  }
 
-      case CivilStatus.Single:
-        familyRows.push({
-          label: 'Parents & Siblings (each)',
-          amount: dependentCoverage,
-        });
-        break;
+  // ================================
+  // Coverage Calculations
+  // ================================
 
-      case CivilStatus.Widowed:
-        familyRows.push({
-          label: `Children (each, up to ${QUOTE_PRICING.maxChildren})`,
-          amount: dependentCoverage,
-        });
-        break;
-    }
+  private calculateSpouseCoverage(level: number): number {
+    if (level <= 0) return 0;
+    return QUOTE_PRICING.spouseBase + (level - 1) * QUOTE_PRICING.spouseIncrement;
+  }
 
-    if (familyRows.length > 0) {
-      sections.push({
-        title: 'Family Protection',
-        rows: familyRows,
-      });
-    }
+  private calculateDependentCoverage(level: number): number {
+    if (level <= 0) return 0;
+    return QUOTE_PRICING.dependentBase + (level - 1) * QUOTE_PRICING.dependentIncrement;
+  }
 
-    if (personalLevel > 0) {
-      sections.push({
-        title: 'Personal Protection',
-        rows: [
-          {
-            label: 'OFW Personal Shield',
-            amount: personalCoverage,
-          },
-        ],
-      });
-    }
+  private calculatePersonalCoverage(level: number): number {
+    if (level <= 0) return 0;
+    return level * QUOTE_PRICING.personalCoveragePerLevel;
+  }
 
-    return sections;
+  // ================================
+  // Premium Calculations
+  // ================================
+
+  private calculateFamilyPremium(level: number): number {
+    if (level <= 0) return 0;
+    return QUOTE_PRICING.familyBasePremium + (level - 1) * QUOTE_PRICING.familyIncrementPremium;
+  }
+
+  private calculatePersonalPremium(level: number): number {
+    if (level <= 0) return 0;
+    return level * QUOTE_PRICING.personalPremiumPerLevel;
   }
 }

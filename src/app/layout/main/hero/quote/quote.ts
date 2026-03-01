@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { CivilStatus } from '../../../../core/enum/civil-status.enum';
-import { QuoteStore } from '../../../../feature/family-shield/store/quote.store';
+import { QuoteStateService } from '../../../../feature/family-shield/state/quote-state.service';
 
 @Component({
   selector: 'app-quote',
@@ -11,12 +11,13 @@ import { QuoteStore } from '../../../../feature/family-shield/store/quote.store'
   imports: [DecimalPipe],
 })
 export class Quote {
-  private store = inject(QuoteStore);
+  protected state = inject(QuoteStateService);
   private router = inject(Router);
 
-  readonly state = this.store.state;
-  readonly totalPremium = this.store.totalPremium;
-  readonly breakdown = this.store.breakdown;
+  readonly request = this.state.request;
+  readonly totalPremium = this.state.totalPremium;
+  readonly breakdown = this.state.breakdown;
+  readonly isValid = this.state.isValid;
 
   protected readonly CivilStatus = CivilStatus;
 
@@ -30,25 +31,25 @@ export class Quote {
 
     if (!value) return;
 
-    this.store.setCivilStatus(value);
+    this.state.setCivilStatus(value);
   }
 
   onFamilyLevelChange(event: Event) {
     const select = event.target as HTMLSelectElement;
     const level = Number(select.value);
 
-    this.store.setFamilyLevel(level);
+    this.state.setFamilyLevel(level);
   }
 
   onPersonalLevelChange(event: Event) {
     const select = event.target as HTMLSelectElement;
     const level = Number(select.value);
 
-    this.store.setPersonalLevel(level);
+    this.state.setPersonalLevel(level);
   }
 
   validate() {
-    if (!this.store.isValid()) return;
+    if (!this.isValid()) return;
     this.router.navigate(['/family-shield/form']);
   }
 }
