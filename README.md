@@ -1,26 +1,34 @@
+## Model 
 QuoteRequest
 - civil status
 - familyUnits
 - personalUnits
 
-Quote.model.ts
+QuoteResult
+- spouseCoverage
+- dependentCoverage
+- personalCoverage
+- familyPremium
+- personalPremium
+- totalPremium
 
-Premium
-- breakdown
-- 
-
+## State
 QuoteStateService
 - Stores the user input needed for quote generation
+- Has both the premium and coverage breakdown
 
-PremiumBreakdownService
-- Premium breakdown
 
+## Services
 QuoteCalculatorService
 - Use by QuoteStateService
 - Calculates the premium
-- Calculates the coverages
+- Calculates the coverage
 
 QuoteBreakdownMapper
-- buildBreakdown
 - Use by QuoteStateService
+- buildBreakdown (coverages)
 - Maps the coverages calculate by QuoteCalculatorService for easier reading
+
+PremiumBreakdownService
+- Used by Summary Bar
+- Premium breakdown
