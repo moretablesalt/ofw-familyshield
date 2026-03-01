@@ -1,0 +1,22 @@
+<div class="stepper">
+  @for (step of steps; track step.route; let i = $index) {
+    @let active = activeStep();
+    @let isActive = i === active;
+    @let isCompleted = i < active;
+    @let isClickable = canJumpToStep(i);
+    <div class="step"
+         [class.active]="isActive"
+         [class.completed]="isCompleted"
+         [class.clickable]="isClickable"
+         (click)="isClickable && goToStep(i)">
+      <span class="circle">
+        @if (isCompleted) {
+          <img src="images/steps/check.svg" alt="completed">
+        } @else {
+          {{ i + 1 }}
+        }
+      </span>
+      <span class="label">{{ step.label }}</span>
+    </div>
+  }
+</div>

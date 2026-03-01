@@ -12,6 +12,7 @@ import { CivilStatus } from '../../../../core/enum/civil-status.enum';
 })
 export class Quote {
   private calculator = inject(QuoteCalculatorService);
+  private router = inject(Router);
 
   status = signal<CivilStatus | null>(null);
   familyLevel = signal<number>(1);
@@ -35,6 +36,6 @@ export class Quote {
     }
 
     this.error.set('');
-    alert('Proceeding to checkout...');
+    this.router.navigate(['/family-shield/form']);
   }
 }
