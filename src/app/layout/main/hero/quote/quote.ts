@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-// import { DirectQuoteService } from '../../../../feature/direct/services/direct-quote.service';
-import { DecimalPipe, JsonPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
+import { QuoteCalculatorService } from './quote-calculator.service';
+import { CivilStatus } from '../../../../core/enum/civil-status.enum';
 
 @Component({
   selector: 'app-quote',
@@ -10,81 +11,22 @@ import { DecimalPipe, JsonPipe } from '@angular/common';
   imports: [DecimalPipe],
 })
 export class Quote {
-  // ===== STATE =====
-  status = signal<string>('');
+  private calculator = inject(QuoteCalculatorService);
+
+  status = signal<CivilStatus | null>(null);
   familyLevel = signal<number>(1);
   personalLevel = signal<number>(0);
   error = signal<string>('');
 
-  // ===== CALCULATIONS =====
-  calculateSpouse(level: number) {
-    return 200000 + (level - 1) * 100000;
-  }
+  totalPremium = computed(() =>
+    this.calculator.calculateTotalPremium(this.familyLevel(), this.personalLevel()),
+  );
 
-  calculateOther(level: number) {
-    return 100000 + (level - 1) * 50000;
-  }
-
-  calculatePersonal(level: number) {
-    return level * 100000;
-  }
-
-  calculateFamilyPremium(level: number) {
-    return 1000 + (level - 1) * 500;
-  }
-
-  totalPremium = computed(() => {
-    const familyPremium = this.calculateFamilyPremium(this.familyLevel());
-    const personalPremium = this.personalLevel() * 800;
-    return familyPremium + personalPremium;
-  });
-
-  breakdown = computed(() => {
-    const status = this.status();
-    const familyLevel = this.familyLevel();
-    const personalLevel = this.personalLevel();
-
-    if (!status) return null;
-
-    const spouse = this.calculateSpouse(familyLevel);
-    const other = this.calculateOther(familyLevel);
-    const personal = this.calculatePersonal(personalLevel);
-
-    const sections: any[] = [];
-
-    // FAMILY SECTION
-    const familyRows: { label: string; amount: number }[] = [];
-
-    if (status === 'Married') {
-      familyRows.push({ label: 'Spouse', amount: spouse });
-      familyRows.push({ label: 'Children (each, up to 4)', amount: other });
-    }
-
-    if (status === 'Single') {
-      familyRows.push({ label: 'Parents & Siblings (each)', amount: other });
-    }
-
-    if (status === 'Widowed') {
-      familyRows.push({ label: 'Children (each, up to 4)', amount: other });
-    }
-
-    if (familyRows.length) {
-      sections.push({
-        title: 'Family Protection',
-        rows: familyRows,
-      });
-    }
-
-    // PERSONAL SECTION
-    if (personalLevel > 0) {
-      sections.push({
-        title: 'Personal Protection',
-        rows: [{ label: 'OFW Personal Shield', amount: personal }],
-      });
-    }
-
-    return sections;
-  });
+  breakdown = computed(() =>
+    this.status()
+      ? this.calculator.buildBreakdown(this.status()!, this.familyLevel(), this.personalLevel())
+      : null,
+  );
 
   validate() {
     if (!this.status()) {
