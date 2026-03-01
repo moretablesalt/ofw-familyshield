@@ -1,4 +1,5 @@
 import { Component, effect, inject } from '@angular/core';
+import { OverlayService } from './overlay.service';
 
 @Component({
   selector: 'app-overlay',
@@ -7,11 +8,11 @@ import { Component, effect, inject } from '@angular/core';
   styleUrl: './overlay.scss',
 })
 export class Overlay {
-  // overlayService = inject(OverlayService);
+  overlayService = inject(OverlayService);
 
   constructor() {
     effect(() => {
-      // this.overlayService.loading() ? document.body.style.overflow = 'hidden' : document.body.style.overflow = '';
+      this.overlayService.loading() ? document.body.style.overflow = 'hidden' : document.body.style.overflow = '';
     });
   }
 }

@@ -1,8 +1,8 @@
-import { Component, signal } from '@angular/core';
+import{ Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './layout/header/header';
 import { Footer } from './layout/footer/footer';
-import { Overlay } from './layout/overlay/overlay';
+import { Overlay } from './shared/ui/overlay/overlay';
 
 @Component({
   selector: 'app-root',

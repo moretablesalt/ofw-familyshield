@@ -3,6 +3,7 @@ import { FormService } from '../../../services/form.service';
 import { Router } from '@angular/router';
 import { DropDown, SelectOption } from '../../../../../shared/ui/drop-down/drop-down';
 import { Input } from '../../../../../shared/ui/input/input';
+import { OverlayService } from '../../../../../shared/ui/overlay/overlay.service';
 
 @Component({
   selector: 'app-personal-details',
@@ -13,7 +14,7 @@ import { Input } from '../../../../../shared/ui/input/input';
 export class PersonalDetails {
   formService = inject(FormService);
   router = inject(Router);
-  // overlayService = inject(OverlayService);
+  overlayService = inject(OverlayService);
 
   model = this.formService.formModel;
 
@@ -49,12 +50,11 @@ export class PersonalDetails {
       return;
     }
 
-    // this.overlayService.show();
+    this.overlayService.show();
 
     // Fake delay (800ms–1200ms feels natural)
     setTimeout(() => {
-      // this.router.navigate(['/direct/form/contact-info']).then(() => this.overlayService.hide());
-      this.router.navigate(['/direct/form/contact-info']);
+      this.router.navigate(['/direct/form/contact-info']).then(() => this.overlayService.hide());
     }, 900);
   }
 }
