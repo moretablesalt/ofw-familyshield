@@ -1,1 +1,100 @@
-<p>personal-details works!</p>
+<div class="card-wrapper">
+  <div class="card">
+
+    <section>
+      <div class="title-container">
+        <h2>Help us complete your OFW policy details</h2>
+        <p>Your information ensures your family receives full benefits with no delays.</p>
+      </div>
+
+      <form (submit)="continue($event)">
+        <div class="card">
+          <div class="card-title">👤 Personal Information</div>
+
+          <!-- 1st row -->
+          <div class="row">
+            <app-input
+              [id]="'firstName'"
+              [fieldTree]="form.firstName"
+              [label]="'First Name'" >
+            </app-input>
+            <app-input
+              [id]="'middleName'"
+              [fieldTree]="form.middleName"
+              [label]="'Middle Name'" >
+            </app-input>
+          </div>
+
+          <!--2nd row-->
+          <div class="row">
+            <app-input
+              [id]="'lastName'"
+              [fieldTree]="form.lastName"
+              [label]="'Last Name'" >
+            </app-input>
+            <app-input
+              [id]="'suffix'"
+              [fieldTree]="form.suffix"
+              [label]="'Suffix'" >
+            </app-input>
+          </div>
+
+          <!--3rd row-->
+          <label class="group-label">Birthday ⓘ</label>
+          <div class="row">
+            <app-drop-down
+              [id]="'dob-month'"
+              [fieldTree]="form.dob.month"
+              [label]="'Month'"
+              [options]="monthOptions">
+            </app-drop-down>
+
+            <app-drop-down
+              [id]="'dob-month'"
+              [fieldTree]="form.dob.day"
+              [label]="'Day'"
+              [options]="dayOptions">
+            </app-drop-down>
+
+            <app-drop-down
+              [id]="'dob-month'"
+              [fieldTree]="form.dob.year"
+              [label]="'Year'"
+              [options]="yearOptions">
+            </app-drop-down>
+          </div>
+
+          <!--4th row-->
+          <div class="row">
+            <app-drop-down
+              [id]="'gender'"
+              [fieldTree]="form.gender"
+              [label]="'Gender'"
+              [options]="genderOptions">
+            </app-drop-down>
+
+            <app-drop-down
+              [id]="'civil-status'"
+              [fieldTree]="form.civilStatus"
+              [label]="'Civil Status'"
+              [options]="civilStatusOptions">
+            </app-drop-down>
+
+          </div>
+
+          <!--5th row-->
+          <div class="row">
+            <app-drop-down
+              [id]="'nationality'"
+              [fieldTree]="form.nationality"
+              [label]="'Nationality'"
+              [options]="nationalityOptions">
+            </app-drop-down>
+          </div>
+        </div>
+        <button type="button" class="btn" (click)="continue($event)">Continue</button>
+      </form>
+    </section>
+  </div>
+
+</div>

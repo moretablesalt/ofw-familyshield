@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+//justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 4rem;
+//min-height: 90vh;
+}
+
+app-stepper {
+  width: 100%;
+}
+
+.dev-tools {
+  width: 100%;
+  max-width: 1000px;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dev-tools__btn {
+  appearance: none;
+  border: 1px solid #d8e4ef;
+  background: #ffffff;
+  color: #1f4e79;
+
+  padding: 10px 14px;
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dev-tools__btn:hover {
+  background: #f7fbff;
+  border-color: #c8dbec;
+  box-shadow: 0 6px 16px rgba(31, 78, 121, 0.12);
+}
+
+.dev-tools__btn:active {
+  transform: translateY(1px);
+}
+
+.dev-tools__btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(30, 115, 181, 0.22),
+    0 6px 16px rgba(31, 78, 121, 0.12);
+}
+
+.dev-tools__btn--primary {
+  background: #1e73b5;
+  border-color: #1e73b5;
+  color: #ffffff;
+}
+
+.dev-tools__btn--primary:hover {
+  background: #1a66a2;
+  border-color: #1a66a2;
+}
