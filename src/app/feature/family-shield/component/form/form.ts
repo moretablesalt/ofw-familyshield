@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { StepperService } from '../../../../layout/stepper/stepper.service';
 
 @Component({
   selector: 'app-form',
@@ -7,4 +8,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './form.html',
   styleUrl: './form.css',
 })
-export class Form {}
+export class Form {
+  private stepperService = inject(StepperService);
+
+  constructor() {
+    this.stepperService.setActive(1);
+  }
+}
