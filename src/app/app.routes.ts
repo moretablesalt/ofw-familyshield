@@ -31,7 +31,12 @@ export const routes: Routes = [
             path: 'contact-info',
             loadComponent: () =>
               import('./feature/family-shield/component/form/contact-info/contact-info').then((m) => m.ContactInfo),
-          }
+          },
+          {
+            path: 'employment-details',
+            loadComponent: () =>
+              import('./feature/family-shield/component/form/employment-details/employment-details').then((m) => m.EmploymentDetails),
+          },
         ],
       },
     ],

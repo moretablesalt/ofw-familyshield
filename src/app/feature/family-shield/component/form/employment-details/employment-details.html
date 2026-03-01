@@ -1,0 +1,43 @@
+<section>
+  <div class="title-container">
+    <h2>Help us complete your OFW policy details</h2>
+    <p>Your information ensures your family receives full benefits with no delays.</p>
+  </div>
+
+  <form action="">
+    <div class="card">
+      <div class="card-title">🪪 Employment Details</div>
+
+      <div class="row">
+        <app-input
+          [id]="'deploymentType'"
+          [fieldTree]="form.deploymentType"
+          [label]="'Deployment Type'" >
+        </app-input>
+
+        <app-input
+          [id]="'jobTitle'"
+          [fieldTree]="form.jobTitle"
+          [label]="'Occupation / Job Title'" >
+        </app-input>
+      </div>
+      <div class="row">
+        <app-input
+          [id]="'employerName'"
+          [fieldTree]="form.employerName"
+          [label]="'Employer Name'" >
+        </app-input>
+
+        <app-input
+          [id]="'countryOfEmployment'"
+          [fieldTree]="form.countryOfEmployment"
+          [label]="'Country of Employment'" >
+        </app-input>
+      </div>
+
+
+    </div>
+    <button type="button" class="btn" (click)="continue($event)">Continue</button>
+  </form>
+
+</section>
