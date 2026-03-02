@@ -84,7 +84,7 @@ export class PolicyHolderStateService {
       personalInfo: this.createInitialPersonalInfo(),
       contactInfo: this.createInitialContactInfo(),
       employmentInfo: this.createInitialEmploymentInfo(),
-      dependents: [],
+      dependents: [this.createInitialDependent()],
     };
   }
 
