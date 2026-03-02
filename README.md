@@ -32,3 +32,10 @@ QuoteBreakdownMapper
 PremiumBreakdownService
 - Used by Summary Bar
 - Premium breakdown
+
+
+## Business rules
+- inception date is the date purchase
+- 1 year duration
+- TSI computation
+- 
