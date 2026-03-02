@@ -68,7 +68,7 @@ export class PolicyHolderStateService {
       dependents: [
         {
           firstName: 'Maria',
-          middleInitial: 'A',
+          middleName: 'A',
           lastName: 'Dela Cruz',
           birthDate: { month: '05', day: '10', year: '2015' },
           relationship: 'CHILD',
@@ -128,7 +128,7 @@ export class PolicyHolderStateService {
   private createInitialDependent(): Dependent {
     return {
       firstName: '',
-      middleInitial: '',
+      middleName: '',
       lastName: '',
       birthDate: { month: '', day: '', year: '' },
       relationship: '',

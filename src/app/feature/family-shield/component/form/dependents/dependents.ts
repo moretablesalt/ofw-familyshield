@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { OverlayService } from '../../../../../shared/ui/overlay/overlay.service';
 import { DropDown, SelectOption } from '../../../../../shared/ui/drop-down/drop-down';
 import { Input } from '../../../../../shared/ui/input/input';
+import { FieldTree } from '@angular/forms/signals';
+import { Dependent } from '../../../model/dependent.model';
 
 @Component({
   selector: 'app-dependents',
@@ -38,8 +40,9 @@ export class Dependents {
     event.preventDefault();
 
     if (!this.form().valid()) {
-
       // mark every field as touched
+
+      this.touchAll(this.form.dependents)
 
       setTimeout(() => {
         this.formService.focusFirstInvalid();
@@ -52,5 +55,16 @@ export class Dependents {
     setTimeout(() => {
       this.router.navigate(['/family-shield/review']).then(() => this.overlayService.hide());
     }, 900);
+  }
+
+  touchAll(dependents: FieldTree<Dependent[], string>): void {
+    for (const dep of dependents) {
+      dep.firstName().markAsTouched();
+      dep.lastName().markAsTouched();
+      dep.birthDate.month().markAsTouched();
+      dep.birthDate.day().markAsTouched();
+      dep.birthDate.year().markAsTouched();
+      dep.relationship().markAsTouched();
+    }
   }
 }

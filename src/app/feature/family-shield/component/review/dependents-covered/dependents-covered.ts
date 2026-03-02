@@ -18,7 +18,7 @@ export class DependentsCovered {
   dependents = computed(() => this.model().dependents ?? []);
 
   fullName = (dependent: Dependent): string => {
-    return [dependent.firstName, dependent.middleInitial, dependent.lastName]
+    return [dependent.firstName, dependent.middleName, dependent.lastName]
       .filter(Boolean)
       .join(' ');
   };

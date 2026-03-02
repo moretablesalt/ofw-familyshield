@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { disabled, minLength, required, SchemaPathTree } from '@angular/forms/signals';
+import { applyEach, disabled, minLength, required, SchemaPathTree } from '@angular/forms/signals';
 import { PolicyHolder } from '../../model/policy-holder/policy-holder.model';
 
 @Injectable({
@@ -35,6 +35,15 @@ export class PolicyHolderSchemaService {
     required(path.employmentInfo.jobTitle);
     required(path.employmentInfo.employerName);
     required(path.employmentInfo.fullAddress);
+
+    applyEach(path.dependents, (dependent) => {
+      required(dependent.firstName);
+      required(dependent.lastName);
+      required(dependent.relationship);
+      required(dependent.birthDate.month)
+      required(dependent.birthDate.day)
+      required(dependent.birthDate.year)
+    })
 
   }
 }

@@ -10,8 +10,13 @@
 section {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 40px; /* slightly tighter than 48 */
 }
+
+
+/* ============================= */
+/* TITLE AREA */
+/* ============================= */
 
 .title-container h2 {
   margin: 0;
@@ -20,7 +25,7 @@ section {
 }
 
 .title-container p {
-  margin: 6px 0 0;
+  margin: 10px 0 0;
   color: #6b7280;
   font-size: 14px;
 }
@@ -33,7 +38,7 @@ section {
 .card {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px; /* tighter */
 }
 
 
@@ -44,16 +49,16 @@ section {
 .dependent-card {
   border: 1px solid #e5e7eb;
   border-radius: 14px;
-  padding: 24px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   background: #ffffff;
-  transition: 0.2s ease;
+  transition: box-shadow 0.2s ease;
 }
 
 .dependent-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -79,7 +84,7 @@ section {
 
 .row {
   display: flex;
-  gap: 16px;
+  gap: 20px;
 }
 
 .row > * {
@@ -95,7 +100,17 @@ section {
 .group-label {
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: -6px;
+}
+
+
+/* ============================= */
+/* DOB DIVIDER */
+/* ============================= */
+
+.divider {
+  height: 1px;
+  background: #ececec;
+  margin: 8px 0 4px;
 }
 
 
@@ -106,15 +121,15 @@ section {
 .remove-btn {
   background: none;
   border: 1px solid #d1d5db;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 13px;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
 .remove-btn:hover {
-  background: #f3f4f6;
+  background: #f5f5f7;
 }
 
 
@@ -123,18 +138,18 @@ section {
 /* ============================= */
 
 .add-btn {
-  padding: 12px 16px;
-  border: 1px dashed #9ca3af;
+  padding: 12px 18px;
+  border: 1px dashed #c7c7cc;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 500;
-  transition: 0.2s;
+  transition: all 0.2s ease;
   width: fit-content;
 }
 
 .add-btn:hover {
-  background: #f9fafb;
+  background: #f5f5f7;
 }
 
 
@@ -143,16 +158,16 @@ section {
 /* ============================= */
 
 .btn {
-  margin-top: 24px;
+  margin-top: 8px;
   padding: 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #1d7fb8;
   color: white;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.2s ease;
 }
 
 .btn:hover {
@@ -168,6 +183,7 @@ section {
 
   .row {
     flex-direction: column;
+    gap: 18px;
   }
 
   .row > * {
@@ -175,7 +191,10 @@ section {
   }
 
   .dependent-card {
-    padding: 18px;
+    padding: 20px;
   }
 
+  .card {
+    gap: 24px;
+  }
 }

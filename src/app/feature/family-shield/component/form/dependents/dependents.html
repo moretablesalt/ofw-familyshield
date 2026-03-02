@@ -7,7 +7,7 @@
         <p>Add family members you want covered under this policy.</p>
       </div>
 
-      <form (submit)="continue($event)">
+      <form (submit)="continue($event)" novalidate>
         <div class="card">
 
           @for (dependent of form.dependents; track $index) {
@@ -33,12 +33,6 @@
               <!-- ROW 1: NAME -->
               <div class="row">
                 <app-input
-                  [id]="'dep-last-' + $index"
-                  [fieldTree]="dependent.lastName"
-                  [label]="'Last Name'">
-                </app-input>
-
-                <app-input
                   [id]="'dep-first-' + $index"
                   [fieldTree]="dependent.firstName"
                   [label]="'First Name'">
@@ -46,15 +40,31 @@
 
                 <app-input
                   [id]="'dep-middle-' + $index"
-                  [fieldTree]="dependent.middleInitial"
-                  [label]="'Middle Initial'">
+                  [fieldTree]="dependent.middleName"
+                  [label]="'Middle Name'">
                 </app-input>
+
+                <app-input
+                  [id]="'dep-last-' + $index"
+                  [fieldTree]="dependent.lastName"
+                  [label]="'Last Name'">
+                </app-input>
+              </div>
+
+              <!-- ROW 2: RELATIONSHIP -->
+              <div class="row">
+                <app-drop-down
+                  [id]="'dep-relationship-' + $index"
+                  [fieldTree]="dependent.relationship"
+                  [label]="'Relationship'"
+                  [options]="relationshipOptions">
+                </app-drop-down>
               </div>
 
               <!-- BIRTHDAY LABEL -->
               <label class="group-label">Birthday ⓘ</label>
 
-              <!-- ROW 2: DOB -->
+              <!-- ROW 3: DOB -->
               <div class="row">
                 <app-drop-down
                   [id]="'dep-dob-month-' + $index"
@@ -75,16 +85,6 @@
                   [fieldTree]="dependent.birthDate.year"
                   [label]="'Year'"
                   [options]="state.YEAR_OPTIONS">
-                </app-drop-down>
-              </div>
-
-              <!-- ROW 3: RELATIONSHIP -->
-              <div class="row">
-                <app-drop-down
-                  [id]="'dep-relationship-' + $index"
-                  [fieldTree]="dependent.relationship"
-                  [label]="'Relationship'"
-                  [options]="relationshipOptions">
                 </app-drop-down>
               </div>
 

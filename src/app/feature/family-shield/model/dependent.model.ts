@@ -1,6 +1,6 @@
 export interface Dependent {
   firstName: string;
-  middleInitial: string;
+  middleName: string;
   lastName: string;
   birthDate: {
     month: string;
