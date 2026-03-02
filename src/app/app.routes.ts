@@ -37,6 +37,11 @@ export const routes: Routes = [
             loadComponent: () =>
               import('./feature/family-shield/component/form/employment-details/employment-details').then((m) => m.EmploymentDetails),
           },
+          {
+            path: 'dependents',
+            loadComponent: () =>
+              import('./feature/family-shield/component/form/dependents/dependents').then((m) => m.Dependents),
+          }
         ],
       },
     ],

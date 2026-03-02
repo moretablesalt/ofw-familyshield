@@ -4,6 +4,7 @@ import { PersonalInfo } from '../../model/policy-holder/personal-info.model';
 import { ContactInfo } from '../../model/policy-holder/contact-info.model';
 import { EmploymentInfo } from '../../model/policy-holder/employment-info.model';
 import { SelectOption } from '../../../../shared/ui/drop-down/drop-down';
+import { Dependent } from '../../model/dependent.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,24 @@ export class PolicyHolderStateService {
     this.formModel.set(this.createInitialPolicyHolder());
   }
 
-  // --------- TEST DATA ---------
+  // ---------------- DEPENDENT METHODS ----------------
+
+  addDependent(): void {
+    this.formModel.update((model) => ({
+      ...model,
+      dependents: [...model.dependents, this.createInitialDependent()],
+    }));
+  }
+
+  removeDependent(index: number): void {
+    this.formModel.update((model) => ({
+      ...model,
+      dependents: model.dependents.filter((_, i) => i !== index),
+    }));
+  }
+
+  // ---------------- TEST DATA ----------------
+
   populateTestData(): void {
     this.formModel.set({
       personalInfo: {
@@ -48,6 +66,15 @@ export class PolicyHolderStateService {
         employerName: 'Sample Employer Inc.',
         countryOfEmployment: 'United Arab Emirates',
       },
+      dependents: [
+        {
+          firstName: 'Maria',
+          middleInitial: 'A',
+          lastName: 'Dela Cruz',
+          birthDate: { month: '05', day: '10', year: '2015' },
+          relationship: 'CHILD',
+        },
+      ],
     });
   }
 
@@ -58,6 +85,7 @@ export class PolicyHolderStateService {
       personalInfo: this.createInitialPersonalInfo(),
       contactInfo: this.createInitialContactInfo(),
       employmentInfo: this.createInitialEmploymentInfo(),
+      dependents: [],
     };
   }
 
@@ -96,6 +124,16 @@ export class PolicyHolderStateService {
       jobTitle: '',
       employerName: '',
       countryOfEmployment: '',
+    };
+  }
+
+  private createInitialDependent(): Dependent {
+    return {
+      firstName: '',
+      middleInitial: '',
+      lastName: '',
+      birthDate: { month: '', day: '', year: '' },
+      relationship: '',
     };
   }
 

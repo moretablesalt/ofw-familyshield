@@ -39,7 +39,7 @@ export class EmploymentDetails {
 
     // Fake delay (800ms–1200ms feels natural)
     setTimeout(() => {
-      this.router.navigate(['/direct/review']).then(() => this.overlayService.hide());
+      this.router.navigate(['/family-shield/form/dependents']).then(() => this.overlayService.hide());
     }, 900);
   }
 }

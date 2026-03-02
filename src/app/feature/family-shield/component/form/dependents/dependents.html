@@ -1,0 +1,113 @@
+<div class="card-wrapper">
+  <div class="card">
+
+    <section>
+      <div class="title-container">
+        <h2>Dependents</h2>
+        <p>Add family members you want covered under this policy.</p>
+      </div>
+
+      <form (submit)="continue($event)">
+        <div class="card">
+
+          @for (dependent of form.dependents; track $index) {
+
+            <div class="dependent-card">
+
+              <!-- HEADER -->
+              <div class="dependent-header">
+                <div class="card-title">
+                  Dependent {{ $index + 1 }}
+                </div>
+
+                @if (form.dependents.length > 1) {
+                  <button
+                    type="button"
+                    class="remove-btn"
+                    (click)="removeDependent($index)">
+                    Remove
+                  </button>
+                }
+              </div>
+
+              <!-- ROW 1: NAME -->
+              <div class="row">
+                <app-input
+                  [id]="'dep-last-' + $index"
+                  [fieldTree]="dependent.lastName"
+                  [label]="'Last Name'">
+                </app-input>
+
+                <app-input
+                  [id]="'dep-first-' + $index"
+                  [fieldTree]="dependent.firstName"
+                  [label]="'First Name'">
+                </app-input>
+
+                <app-input
+                  [id]="'dep-middle-' + $index"
+                  [fieldTree]="dependent.middleInitial"
+                  [label]="'Middle Initial'">
+                </app-input>
+              </div>
+
+              <!-- BIRTHDAY LABEL -->
+              <label class="group-label">Birthday ⓘ</label>
+
+              <!-- ROW 2: DOB -->
+              <div class="row">
+                <app-drop-down
+                  [id]="'dep-dob-month-' + $index"
+                  [fieldTree]="dependent.birthDate.month"
+                  [label]="'Month'"
+                  [options]="state.MONTH_OPTIONS">
+                </app-drop-down>
+
+                <app-drop-down
+                  [id]="'dep-dob-day-' + $index"
+                  [fieldTree]="dependent.birthDate.day"
+                  [label]="'Day'"
+                  [options]="state.DAY_OPTIONS">
+                </app-drop-down>
+
+                <app-drop-down
+                  [id]="'dep-dob-year-' + $index"
+                  [fieldTree]="dependent.birthDate.year"
+                  [label]="'Year'"
+                  [options]="state.YEAR_OPTIONS">
+                </app-drop-down>
+              </div>
+
+              <!-- ROW 3: RELATIONSHIP -->
+              <div class="row">
+                <app-drop-down
+                  [id]="'dep-relationship-' + $index"
+                  [fieldTree]="dependent.relationship"
+                  [label]="'Relationship'"
+                  [options]="relationshipOptions">
+                </app-drop-down>
+              </div>
+
+            </div>
+          }
+
+          <!-- ADD BUTTON -->
+          <button
+            type="button"
+            class="add-btn"
+            (click)="addDependent()">
+            + Add Dependent
+          </button>
+
+        </div>
+
+        <!-- CONTINUE BUTTON -->
+        <button type="submit" class="btn">
+          Continue
+        </button>
+
+      </form>
+    </section>
+
+  </div>
+</div>
