@@ -46,6 +46,10 @@ export const routes: Routes = [
       {
         path: 'review',
         loadComponent: () => import('./feature/family-shield/component/review/review').then((m) => m.Review),
+      },
+      {
+        path: 'confirmation',
+        loadComponent: () => import('./feature/family-shield/component/confirmation/confirmation').then((m) => m.Confirmation),
       }
     ],
   },
