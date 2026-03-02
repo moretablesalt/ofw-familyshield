@@ -10,11 +10,10 @@
 
       <div class="row">
         <app-input
-          [id]="'deploymentType'"
-          [fieldTree]="form.deploymentType"
-          [label]="'Deployment Type'" >
+          [id]="'employerName'"
+          [fieldTree]="form.employerName"
+          [label]="'Employer Name'" >
         </app-input>
-
         <app-input
           [id]="'jobTitle'"
           [fieldTree]="form.jobTitle"
@@ -23,18 +22,11 @@
       </div>
       <div class="row">
         <app-input
-          [id]="'employerName'"
-          [fieldTree]="form.employerName"
-          [label]="'Employer Name'" >
-        </app-input>
-
-        <app-input
-          [id]="'countryOfEmployment'"
-          [fieldTree]="form.countryOfEmployment"
-          [label]="'Country of Employment'" >
+          [id]="'fullAddress'"
+          [fieldTree]="form.fullAddress"
+          [label]="'Employer Address'" >
         </app-input>
       </div>
-
 
     </div>
     <button type="button" class="btn" (click)="continue($event)">Continue</button>

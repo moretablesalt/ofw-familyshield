@@ -32,11 +32,9 @@ export class PolicyHolderSchemaService {
     required(path.contactInfo.passportExpiryDate);
 
     // Employment Info
-    // required(path.employmentInfo.deploymentType);
     required(path.employmentInfo.jobTitle);
     required(path.employmentInfo.employerName);
-    required(path.employmentInfo.countryOfEmployment);
+    required(path.employmentInfo.fullAddress);
 
-    disabled(path.employmentInfo.deploymentType);
   }
 }

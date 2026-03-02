@@ -61,10 +61,9 @@ export class PolicyHolderStateService {
         passportExpiryDate: '2030-12-31',
       },
       employmentInfo: {
-        deploymentType: 'LAND',
         jobTitle: 'Welder',
         employerName: 'Sample Employer Inc.',
-        countryOfEmployment: 'United Arab Emirates',
+        fullAddress: 'United Arab Emirates',
       },
       dependents: [
         {
@@ -120,10 +119,9 @@ export class PolicyHolderStateService {
 
   private createInitialEmploymentInfo(): EmploymentInfo {
     return {
-      deploymentType: 'LAND',
       jobTitle: '',
       employerName: '',
-      countryOfEmployment: '',
+      fullAddress: '',
     };
   }
 

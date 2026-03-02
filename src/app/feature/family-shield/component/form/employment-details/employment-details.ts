@@ -23,10 +23,9 @@ export class EmploymentDetails {
     event.preventDefault();
 
     if (!this.form().valid()) {
-      this.form.deploymentType().markAsTouched();
       this.form.jobTitle().markAsTouched();
       this.form.employerName().markAsTouched();
-      this.form.countryOfEmployment().markAsTouched();
+      this.form.fullAddress().markAsTouched();
 
       setTimeout(() => {
         this.formService.focusFirstInvalid();
