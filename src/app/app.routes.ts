@@ -39,11 +39,14 @@ export const routes: Routes = [
           },
           {
             path: 'dependents',
-            loadComponent: () =>
-              import('./feature/family-shield/component/form/dependents/dependents').then((m) => m.Dependents),
+            loadComponent: () => import('./feature/family-shield/component/form/dependents/dependents').then((m) => m.Dependents),
           }
         ],
       },
+      {
+        path: 'review',
+        loadComponent: () => import('./feature/family-shield/component/review/review').then((m) => m.Review),
+      }
     ],
   },
 ];

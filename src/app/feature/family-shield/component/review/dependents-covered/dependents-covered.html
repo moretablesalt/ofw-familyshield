@@ -1,0 +1,52 @@
+<!-- DEPENDENTS -->
+@if (dependents().length) {
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="card-title">III. Dependents Information</div>
+      <a href="#" class="edit-link">Edit Info</a>
+    </div>
+
+    <div class="card-body">
+
+      @for (dependent of dependents(); track $index) {
+
+        <div class="dependent-block">
+
+          <div class="dependent-title">
+            Dependent {{ $index + 1 }}
+          </div>
+
+          <div class="info-grid">
+
+            <div class="label">Full Name:</div>
+            <div class="value">
+              {{ fullName(dependent) }}
+            </div>
+
+            <div class="label">Relationship:</div>
+            <div class="value">
+              {{ dependent.relationship }}
+            </div>
+
+            <div class="label">Birthday:</div>
+            <div class="value">
+              {{ dobPretty(dependent) }}
+            </div>
+
+          </div>
+
+        </div>
+
+        @if ($index < dependents().length - 1) {
+          <div class="divider"></div>
+        }
+
+      }
+
+    </div>
+
+  </div>
+
+}

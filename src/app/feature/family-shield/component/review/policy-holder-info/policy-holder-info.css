@@ -1,0 +1,83 @@
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 880px;
+  margin: auto;
+  background: #e6eef5;
+  padding: 28px;
+  border-radius: 14px;
+}
+
+/* ================= CARD ================= */
+.card {
+  background: #f7fbff;
+  border: 1px solid #d8e4ef;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+  background: #d9e9f5;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f4e79;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.edit-link {
+  font-size: 13px;
+  color: #1a73b8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.edit-link:hover {
+  text-decoration: underline;
+}
+
+/* ================= CARD BODY ================= */
+.card-body {
+  padding: 18px 20px;
+}
+
+/* ================= INFO GRID ================= */
+.info-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  row-gap: 6px;
+  column-gap: 12px;
+  font-size: 13px;
+}
+
+.label {
+  font-weight: 600;
+  color: #2f3b46;
+}
+
+.value {
+  color: #444;
+}
+
+/* ================= DIVIDER ================= */
+.divider {
+  height: 1px;
+  background: #e3edf5;
+  margin: 12px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,119 @@
+/* ================= CARD ================= */
+.card {
+  background: #f7fbff;
+  border: 1px solid #d8e4ef;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+  background: #d9e9f5;
+  padding: 16px 20px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f4e79;
+}
+
+/* ================= DETAILS (COLLAPSIBLE) ================= */
+.insurance-details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 18px;
+  background: #f2f7fb;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1a73b8;
+  border-top: 1px solid #d8e4ef;
+  border-bottom: 1px solid #d8e4ef;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.insurance-details summary:hover {
+  background: #e9f2fb;
+}
+
+.insurance-details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Custom arrow */
+.insurance-details summary::after {
+  content: "▾";
+  position: absolute;
+  right: 18px;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.insurance-details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+/* ================= DETAILS BODY ================= */
+.details-body {
+  padding: 18px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #d8e4ef;
+  font-size: 13px;
+  color: #444;
+}
+
+/* ================= TABLE ================= */
+.benefits-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.benefits-table th {
+  background: #1e73b5;
+  color: white;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.benefits-table th:last-child,
+.benefits-table td:last-child {
+  text-align: right;
+}
+
+.benefits-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e3edf5;
+}
+
+.benefits-table tbody tr:hover {
+  background: #f3f9ff;
+}
+
+/* Slight emphasis for amount column */
+.benefits-table td:last-child {
+  font-weight: 500;
+  color: #1f4e79;
+}
+
+/* ================= LISTS ================= */
+.details-body ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.details-body li {
+  margin-bottom: 8px;
+}
+
+/* ================= DISCLAIMER ================= */
+.disclaimer {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #6b7c93;
+}

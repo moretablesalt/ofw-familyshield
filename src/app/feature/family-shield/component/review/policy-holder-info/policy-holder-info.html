@@ -1,0 +1,95 @@
+<!-- POLICY HOLDER -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">II. Policyholder’s Information</div>
+    <a href="#" class="edit-link">Edit Info</a>
+  </div>
+
+  <div class="card-body">
+
+    <div class="info-grid">
+      <div class="label">Full Name:</div>
+      <div class="value">
+        {{ fullName() }}
+      </div>
+
+      <div class="label">Birthday:</div>
+      <div class="value">
+        {{ dobPretty() }}
+      </div>
+
+      <div class="label">Nationality:</div>
+      <div class="value">
+        {{ model.personalInfo.nationality }}
+      </div>
+
+      <div class="label">Civil Status:</div>
+      <div class="value">
+        {{ model.personalInfo.civilStatus }}
+      </div>
+
+      <div class="label">Gender:</div>
+      <div class="value">
+        {{ model.personalInfo.gender }}
+      </div>
+
+      <div class="label">Mobile Number:</div>
+      <div class="value">
+        {{ model.contactInfo.mobile }}
+      </div>
+
+      <div class="label">Email Address:</div>
+      <div class="value">
+        {{ model.contactInfo.email }}
+      </div>
+
+      <div class="label">Complete Address:</div>
+      <div class="value">
+        {{ model.contactInfo.address.street }},
+        {{ model.contactInfo.address.barangay }},
+        {{ model.contactInfo.address.city }},
+        {{ model.contactInfo.address.province }},
+        {{ model.contactInfo.address.zipCode }}
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info-grid">
+      <div class="label">OFW Type:</div>
+      <div class="value">
+        {{ model.employmentInfo.deploymentType }}
+      </div>
+
+      <div class="label">Occupation / Job Title:</div>
+      <div class="value">
+        {{ model.employmentInfo.jobTitle }}
+      </div>
+
+      <div class="label">Employer Name:</div>
+      <div class="value">
+        {{ model.employmentInfo.employerName }}
+      </div>
+
+      <div class="label">Country of Employment:</div>
+      <div class="value">
+        {{ model.employmentInfo.countryOfEmployment }}
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info-grid">
+      <div class="label">Passport Number:</div>
+      <div class="value">
+        {{ model.contactInfo.passportNo }}
+      </div>
+
+      <div class="label">Passport Expiry Date:</div>
+      <div class="value">
+        {{ model.contactInfo.passportExpiryDate }}
+      </div>
+    </div>
+
+  </div>
+</div>

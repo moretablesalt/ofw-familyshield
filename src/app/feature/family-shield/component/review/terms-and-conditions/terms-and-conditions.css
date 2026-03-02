@@ -1,0 +1,54 @@
+/* ================= CARD ================= */
+.card {
+  background: #f7fbff;
+  border: 1px solid #d8e4ef;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+  background: #d9e9f5;
+  padding: 14px 18px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f4e79;
+}
+
+/* ================= CARD BODY ================= */
+.card-body {
+  padding: 18px 20px;
+}
+
+/* ================= SUBHEADING ================= */
+.subheading {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #2a2f36;
+}
+
+/* ================= CHECKBOX GROUP ================= */
+.checkbox-group label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.checkbox-group input {
+  margin-top: 3px;
+}
+
+/* ================= LINKS ================= */
+.checkbox-group a {
+  color: #1a73b8;
+  text-decoration: underline;
+}

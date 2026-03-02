@@ -1,0 +1,80 @@
+/* ================= CARD ================= */
+.card {
+  background: #f7fbff;
+  border: 1px solid #d8e4ef;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+/* ================= CARD HEADER ================= */
+.card-header {
+  background: #d9e9f5;
+  padding: 14px 18px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f4e79;
+}
+
+/* ================= CARD BODY ================= */
+.card-body {
+  padding: 18px 20px;
+  font-size: 13px;
+  color: #444;
+}
+
+/* ================= SUBHEADING ================= */
+.subheading {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #2a2f36;
+}
+
+/* ================= DISCLAIMER LIST ================= */
+.disclaimer-list {
+  padding-left: 18px;
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+/* ================= NOTICE TEXT ================= */
+.notice {
+  text-align: center;
+  font-size: 12px;
+  margin: 18px 0;
+  color: #555;
+}
+
+/* ================= PAYMENT BOX ================= */
+.payment-box {
+  background: #dceaf4;
+  padding: 22px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.payment-box h5 {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #2a2f36;
+}
+
+/* ================= PAYMENT LOGOS ================= */
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  font-size: 14px;
+}
+
+.payment-logos.secondary {
+  font-size: 13px;
+  opacity: 0.85;
+}

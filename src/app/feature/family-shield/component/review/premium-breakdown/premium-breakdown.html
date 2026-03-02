@@ -1,0 +1,52 @@
+<!-- PRICE BREAKDOWN -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">I. Price Breakdown</div>
+    <a href="#" class="edit-link">Edit Cover</a>
+  </div>
+
+  <div class="card-body">
+    <div class="section-title">Payment Summary</div>
+
+    <div class="row">
+      <span>Plan</span>
+      <span>Rehire and Direct Hire OFW Protection</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+      <span>Coverage period</span>
+      <span>1 Year</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+      <span>Basic Premium</span>
+      <span>$ {{ basicPremiumPhp() | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="row">
+      <span>Documentary Stamp Tax</span>
+      <span>$ {{ dstPhp() | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="row">
+      <span>Premium Tax</span>
+      <span>$ {{ premiumTaxPhp() | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="row">
+      <span>Local Gov't Tax</span>
+      <span>$ {{ lgtPhp() | number:'1.2-2' }}</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row total">
+      <span>Total Amount Due</span>
+      <span>$ {{ grossPremiumPhp() | number:'1.2-2' }}</span>
+    </div>
+  </div>
+</div>

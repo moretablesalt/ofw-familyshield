@@ -50,7 +50,7 @@ export class Dependents {
     this.overlayService.show();
 
     setTimeout(() => {
-      this.router.navigate(['/family-shield/form/review']).then(() => this.overlayService.hide());
+      this.router.navigate(['/family-shield/review']).then(() => this.overlayService.hide());
     }, 900);
   }
 }
