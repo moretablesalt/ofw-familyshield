@@ -7,16 +7,18 @@ import { QuoteResult } from '../model/quote-result.model';
   providedIn: 'root',
 })
 export class QuoteCalculatorService {
-
   calculate(request: QuoteRequest): QuoteResult {
-    const { familyLevel, personalLevel } = request;
+    const familyUnits = request.familyLevel;
+    const personalLevel = request.personalLevel;
 
-    const spouseCoverage = this.calculateSpouseCoverage(familyLevel);
-    const dependentCoverage = this.calculateDependentCoverage(familyLevel);
-    const personalCoverage = this.calculatePersonalCoverage(personalLevel);
+    const spouseCoverage = familyUnits * QUOTE_PRICING.coveragePerUnit;
+    const dependentCoverage = familyUnits * QUOTE_PRICING.dependentCoveragePerUnit;
 
-    const familyPremium = this.calculateFamilyPremium(familyLevel);
-    const personalPremium = this.calculatePersonalPremium(personalLevel);
+    const familyPremium = familyUnits * QUOTE_PRICING.familyPremiumPerUnit;
+
+    const personalCoverage = personalLevel * QUOTE_PRICING.personalCoveragePerLevel;
+
+    const personalPremium = personalLevel * QUOTE_PRICING.personalPremiumPerLevel;
 
     return {
       spouseCoverage,
@@ -28,36 +30,4 @@ export class QuoteCalculatorService {
     };
   }
 
-  // ================================
-  // Coverage Calculations
-  // ================================
-
-  private calculateSpouseCoverage(level: number): number {
-    if (level <= 0) return 0;
-    return QUOTE_PRICING.spouseBase + (level - 1) * QUOTE_PRICING.spouseIncrement;
-  }
-
-  private calculateDependentCoverage(level: number): number {
-    if (level <= 0) return 0;
-    return QUOTE_PRICING.dependentBase + (level - 1) * QUOTE_PRICING.dependentIncrement;
-  }
-
-  private calculatePersonalCoverage(level: number): number {
-    if (level <= 0) return 0;
-    return level * QUOTE_PRICING.personalCoveragePerLevel;
-  }
-
-  // ================================
-  // Premium Calculations
-  // ================================
-
-  private calculateFamilyPremium(level: number): number {
-    if (level <= 0) return 0;
-    return QUOTE_PRICING.familyBasePremium + (level - 1) * QUOTE_PRICING.familyIncrementPremium;
-  }
-
-  private calculatePersonalPremium(level: number): number {
-    if (level <= 0) return 0;
-    return level * QUOTE_PRICING.personalPremiumPerLevel;
-  }
 }
