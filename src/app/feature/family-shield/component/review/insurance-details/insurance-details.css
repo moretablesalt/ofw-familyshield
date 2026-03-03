@@ -7,7 +7,6 @@
   overflow: hidden;
 }
 
-/* ================= CARD HEADER ================= */
 .card-header {
   background: #d9e9f5;
   padding: 16px 20px;
@@ -19,7 +18,7 @@
   color: #1f4e79;
 }
 
-/* ================= DETAILS (COLLAPSIBLE) ================= */
+/* ================= DETAILS ================= */
 .insurance-details summary {
   list-style: none;
   cursor: pointer;
@@ -42,7 +41,6 @@
   display: none;
 }
 
-/* Custom arrow */
 .insurance-details summary::after {
   content: "▾";
   position: absolute;
@@ -55,13 +53,22 @@
   transform: rotate(180deg);
 }
 
-/* ================= DETAILS BODY ================= */
 .details-body {
-  padding: 18px 20px;
+  padding: 24px;
   background: #ffffff;
-  border-bottom: 1px solid #d8e4ef;
   font-size: 13px;
   color: #444;
+}
+
+/* ================= PACKAGE BLOCK ================= */
+.package-block {
+  margin-bottom: 28px;
+}
+
+.package-divider {
+  height: 1px;
+  background: #d8e4ef;
+  margin: 32px 0;
 }
 
 /* ================= TABLE ================= */
@@ -69,14 +76,13 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  border-radius: 6px;
-  overflow: hidden;
+  margin-bottom: 14px;
 }
 
 .benefits-table th {
   background: #1e73b5;
   color: white;
-  padding: 10px 12px;
+  padding: 12px 14px;
   text-align: left;
   font-weight: 600;
 }
@@ -87,7 +93,7 @@
 }
 
 .benefits-table td {
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-bottom: 1px solid #e3edf5;
 }
 
@@ -95,25 +101,49 @@
   background: #f3f9ff;
 }
 
-/* Slight emphasis for amount column */
 .benefits-table td:last-child {
-  font-weight: 500;
+  font-weight: 600;
   color: #1f4e79;
 }
 
-/* ================= LISTS ================= */
-.details-body ul {
-  padding-left: 18px;
-  margin: 0;
+/* Financial Assistance formatting */
+.benefits-table td small {
+  display: block;
+  margin-top: 6px;
+  color: #6b7c93;
 }
 
-.details-body li {
-  margin-bottom: 8px;
+.benefits-table td strong {
+  display: block;
+  margin-top: 10px;
+}
+
+.benefits-table td ul {
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+/* ================= PREMIUM ================= */
+.premium {
+  font-size: 13px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.premium strong {
+  color: #1f4e79;
+}
+
+.premium-highlight {
+  background: #f2f7fb;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #d8e4ef;
 }
 
 /* ================= DISCLAIMER ================= */
 .disclaimer {
-  margin-top: 16px;
+  margin-top: 24px;
   font-size: 12px;
   color: #6b7c93;
 }
