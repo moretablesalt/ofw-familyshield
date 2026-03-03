@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { FormService } from '../../../services/form/form.service';
 import { PolicyHolderStateService } from '../../../services/form/policy-holder-state.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { DropDown, SelectOption } from '../../../../../shared/ui/drop-down/drop-
 import { Input } from '../../../../../shared/ui/input/input';
 import { FieldTree } from '@angular/forms/signals';
 import { Dependent } from '../../../model/dependent.model';
+import { QuoteStateService } from '../../../state/quote-state.service';
+import { CivilStatus } from '../../../../../core/enum/civil-status.enum';
 
 @Component({
   selector: 'app-dependents',
@@ -16,24 +18,47 @@ import { Dependent } from '../../../model/dependent.model';
 })
 export class Dependents {
   private readonly formService = inject(FormService);
-  readonly state = inject(PolicyHolderStateService);
+  readonly policyHolderState = inject(PolicyHolderStateService);
   private readonly router = inject(Router);
   private readonly overlayService = inject(OverlayService);
+  quoteState = inject(QuoteStateService);
 
   form = this.formService.form;
+  civilStatus = computed(() => this.quoteState.request().civilStatus);
+  dependents = this.form.dependents;
 
-  relationshipOptions: SelectOption[] = [
-    { description: 'Spouse', value: 'SPOUSE' },
-    { description: 'Child', value: 'CHILD' },
-    { description: 'Parent', value: 'PARENT' },
-  ];
+  relationshipOptions = computed<SelectOption[]>(() => {
+    const status = this.civilStatus();
+
+    switch (status) {
+      case CivilStatus.Married:
+        return [
+          { description: 'Spouse', value: 'SPOUSE' },
+          { description: 'Child', value: 'CHILD' },
+        ];
+
+      case CivilStatus.Widowed:
+      case CivilStatus.Separated:
+        return [{ description: 'Child', value: 'CHILD' }];
+
+      case CivilStatus.Single:
+        return [
+          { description: 'Parent', value: 'PARENT' },
+          { description: 'Sibling', value: 'SIBLING' },
+        ];
+
+      default:
+        return [];
+    }
+  });
+
 
   addDependent() {
-    this.state.addDependent(); // delegate to your form builder logic
+    this.policyHolderState.addDependent(); // delegate to your form builder logic
   }
 
   removeDependent(index: number) {
-    this.state.removeDependent(index);
+    this.policyHolderState.removeDependent(index);
   }
 
   continue(event: Event) {
@@ -42,7 +67,7 @@ export class Dependents {
     if (!this.form().valid()) {
       // mark every field as touched
 
-      this.touchAll(this.form.dependents)
+      this.touchAll(this.form.dependents);
 
       setTimeout(() => {
         this.formService.focusFirstInvalid();
