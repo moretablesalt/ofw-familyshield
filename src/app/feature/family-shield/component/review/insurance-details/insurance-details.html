@@ -142,58 +142,60 @@
         </div>
       }
 
-      <!-- DIVIDER -->
-      <div class="package-divider"></div>
+      @if(personalUnits() > 0) {
+        <!-- DIVIDER -->
+        <div class="package-divider"></div>
 
-      <!-- PACKAGE 3 -->
-      <div class="package-block">
-        <table class="benefits-table">
-          <thead>
-          <tr>
-            <th>OFW's Coverage</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
+        <!-- PACKAGE 3 -->
+        <div class="package-block">
+          <table class="benefits-table">
+            <thead>
+            <tr>
+              <th>OFW's Coverage</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
 
-          <tr>
-            <td>Accidental Death, Dismemberment or Disablement</td>
-            <td>₱{{ 100000 * personalUnits() | number }}</td>
-          </tr>
+            <tr>
+              <td>Accidental Death, Dismemberment or Disablement</td>
+              <td>₱{{ 100000 * personalUnits() | number }}</td>
+            </tr>
 
-          <tr>
-            <td>Permanent Total Disability due to Accident</td>
-            <td>₱{{ 100000 * personalUnits() | number }}</td>
-          </tr>
+            <tr>
+              <td>Permanent Total Disability due to Accident</td>
+              <td>₱{{ 100000 * personalUnits() | number }}</td>
+            </tr>
 
-          <tr>
-            <td>Unprovoked Murder or Assault</td>
-            <td>₱{{ 50000 * personalUnits() | number }}</td>
-          </tr>
+            <tr>
+              <td>Unprovoked Murder or Assault</td>
+              <td>₱{{ 50000 * personalUnits() | number }}</td>
+            </tr>
 
-          <tr>
-            <td>
-              Financial Assistance Benefit (death due to non-accidental cause)
-              <small>Underwritten by First Life Financial</small>
+            <tr>
+              <td>
+                Financial Assistance Benefit (death due to non-accidental cause)
+                <small>Underwritten by First Life Financial</small>
 
-              <strong>Important Conditions:</strong>
-              <ul>
-                <li>After 6 consecutive months: ₱{{ 20000 * personalUnits() | number }}</li>
-                <li>After 12 consecutive months: ₱{{ 100000 * personalUnits() | number }}</li>
-                <li>Limits form part of and not in addition to this benefit</li>
-              </ul>
-            </td>
-            <td>₱{{ 100000 * personalUnits() | number }}</td>
-          </tr>
+                <strong>Important Conditions:</strong>
+                <ul>
+                  <li>After 6 consecutive months: ₱{{ 20000 * personalUnits() | number }}</li>
+                  <li>After 12 consecutive months: ₱{{ 100000 * personalUnits() | number }}</li>
+                  <li>Limits form part of and not in addition to this benefit</li>
+                </ul>
+              </td>
+              <td>₱{{ 100000 * personalUnits() | number }}</td>
+            </tr>
 
-          <tr>
-            <td>Cash Assistance Benefit</td>
-            <td>₱{{ 15000 * personalUnits() | number }}</td>
-          </tr>
+            <tr>
+              <td>Cash Assistance Benefit</td>
+              <td>₱{{ 15000 * personalUnits() | number }}</td>
+            </tr>
 
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      }
 
       <p class="disclaimer">
         Coverage amounts follow the policy contract issued by Prudential Guarantee;
