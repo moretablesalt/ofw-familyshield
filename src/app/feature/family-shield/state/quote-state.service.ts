@@ -82,7 +82,7 @@ export class QuoteStateService {
   private getEmptyState(): QuoteRequest {
     return {
       civilStatus: null,
-      familyLevel: 1,
+      familyLevel: 2,
       personalLevel: 0,
     };
   }
