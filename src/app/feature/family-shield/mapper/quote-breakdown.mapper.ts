@@ -39,7 +39,7 @@ export function buildBreakdown(civilStatus: CivilStatus, result: QuoteResult): B
     });
   }
 
-  if (civilStatus === CivilStatus.Widowed) {
+  if (civilStatus === CivilStatus.Widowed || civilStatus === CivilStatus.Separated) {
     familyRows.push({
       label: `Children (each, up to ${QUOTE_PRICING.maxChildren})`,
       amount: result.dependentCoverage,

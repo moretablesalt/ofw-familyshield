@@ -17,9 +17,9 @@ export class InsuranceDetails {
 
   civilStatus = computed(() => this.quoteState.request().civilStatus);
 
-  showPackage1 = computed(() => this.civilStatus() === CivilStatus.Married);
+  showPackage1 = computed(() => this.civilStatus() === CivilStatus.Married || this.civilStatus() === CivilStatus.Widowed);
 
   showPackage2 = computed(
-    () => this.civilStatus() !== CivilStatus.Married || this.civilStatus() === CivilStatus.Single,
+    () => this.civilStatus() == CivilStatus.Separated || this.civilStatus() === CivilStatus.Single,
   );
 }
