@@ -3,6 +3,7 @@ import { CivilStatus } from '../../../core/enum/civil-status.enum';
 import { QuoteCalculatorService } from '../services/quote-calculator.service';
 import { QuoteRequest } from '../model/quote-request.model';
 import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
+import { PolicyHolderStateService } from '../services/form/policy-holder-state.service';
 
 export interface Quote {
   civilStatus: CivilStatus | null;
@@ -17,6 +18,7 @@ const STORAGE_KEY = 'family-shield-quote-state';
 })
 export class QuoteStateService {
   private calculator = inject(QuoteCalculatorService);
+  private policyHolderState = inject(PolicyHolderStateService);
 
   // This is where the fields in the quote are stored.
   private _request = signal<QuoteRequest>(this.loadInitialState());
@@ -25,6 +27,8 @@ export class QuoteStateService {
   readonly quoteResult = computed(() => this.calculator.calculate(this._request()));
 
   readonly totalPremium = computed(() => this.quoteResult().totalPremium);
+
+  private previousStatus: CivilStatus | null = null;
 
   readonly breakdown = computed(() => {
     const request = this._request();
@@ -57,6 +61,19 @@ export class QuoteStateService {
   constructor() {
     effect(() => {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(this._request()));
+    });
+
+    // Reset dependents when civil status changes
+    effect(() => {
+      const current = this._request().civilStatus;
+
+      if (current !== this.previousStatus) {
+        if (this.previousStatus !== null) {
+          this.policyHolderState.resetDependents();
+        }
+
+        this.previousStatus = current;
+      }
     });
   }
 

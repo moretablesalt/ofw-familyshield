@@ -33,6 +33,15 @@ export class PolicyHolderStateService {
     }));
   }
 
+  resetDependents(): void {
+    this.formModel.update((model) => ({
+      ...model,
+      dependents: [],
+    }));
+
+    this.addDependent();
+  }
+
   // ---------------- TEST DATA ----------------
 
   populateTestData(): void {
