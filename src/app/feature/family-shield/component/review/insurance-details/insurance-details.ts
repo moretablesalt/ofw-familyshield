@@ -12,10 +12,10 @@ import { DecimalPipe } from '@angular/common';
 export class InsuranceDetails {
   private quoteState = inject(QuoteStateService);
 
-  familyUnits = computed(() => this.quoteState.request().familyLevel);
-  personalUnits = computed(() => this.quoteState.request().personalLevel);
+  familyUnits = computed(() => this.quoteState.request().familyUnit);
+  personalUnits = computed(() => this.quoteState.request().ofwUnit);
 
-  civilStatus = computed(() => this.quoteState.request().civilStatus);
+  civilStatus = computed(() => this.quoteState.request().policyHolderCivilStatus);
 
   showPackage1 = computed(() => this.civilStatus() === CivilStatus.Married || this.civilStatus() === CivilStatus.Widowed);
 

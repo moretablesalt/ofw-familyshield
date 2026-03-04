@@ -32,24 +32,24 @@ export class QuoteStateService {
 
   readonly breakdown = computed(() => {
     const request = this._request();
-    if (!request.civilStatus) return [];
+    if (!request.policyHolderCivilStatus) return [];
 
-    return buildBreakdown(request.civilStatus, this.quoteResult());
+    return buildBreakdown(request.policyHolderCivilStatus, this.quoteResult());
   });
 
-  readonly isValid = computed(() => this._request().civilStatus !== null);
+  readonly isValid = computed(() => this._request().policyHolderCivilStatus !== null);
 
   // Setters
   setCivilStatus(status: CivilStatus) {
-    this.patch({ civilStatus: status });
+    this.patch({ policyHolderCivilStatus: status });
   }
 
   setFamilyLevel(level: number) {
-    this.patch({ familyLevel: level });
+    this.patch({ familyUnit: level });
   }
 
   setPersonalLevel(level: number) {
-    this.patch({ personalLevel: level });
+    this.patch({ ofwUnit: level });
   }
 
   reset() {
@@ -65,7 +65,7 @@ export class QuoteStateService {
 
     // Reset dependents when civil status changes
     effect(() => {
-      const current = this._request().civilStatus;
+      const current = this._request().policyHolderCivilStatus;
 
       if (current !== this.previousStatus) {
         if (this.previousStatus !== null) {
@@ -98,9 +98,9 @@ export class QuoteStateService {
 
   private getEmptyState(): QuoteRequest {
     return {
-      civilStatus: null,
-      familyLevel: 2,
-      personalLevel: 0,
+      policyHolderCivilStatus: null,
+      familyUnit: 2,
+      ofwUnit: 0,
     };
   }
 }

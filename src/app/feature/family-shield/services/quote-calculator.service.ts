@@ -8,8 +8,8 @@ import { QuoteResult } from '../model/quote-result.model';
 })
 export class QuoteCalculatorService {
   calculate(request: QuoteRequest): QuoteResult {
-    const familyUnits = request.familyLevel;
-    const personalLevel = request.personalLevel;
+    const familyUnits = request.familyUnit;
+    const personalLevel = request.ofwUnit;
 
     const spouseCoverage = familyUnits * QUOTE_PRICING.coveragePerUnit;
     const dependentCoverage = familyUnits * QUOTE_PRICING.dependentCoveragePerUnit;

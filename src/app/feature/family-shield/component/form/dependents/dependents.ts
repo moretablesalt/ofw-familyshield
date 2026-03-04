@@ -24,7 +24,7 @@ export class Dependents {
   quoteState = inject(QuoteStateService);
 
   form = this.formService.form;
-  civilStatus = computed(() => this.quoteState.request().civilStatus);
+  civilStatus = computed(() => this.quoteState.request().policyHolderCivilStatus);
   dependents = this.form.dependents;
 
   relationshipOptions = computed<SelectOption[]>(() => {
