@@ -1,6 +1,6 @@
 export enum CivilStatus {
-  Married = 'Married',
-  Single = 'Single',
-  Widowed = 'Widowed',
-  Separated = 'Separated',
+  Married = 'MARRIED',
+  Single = 'SINGLE',
+  Widowed = 'WIDOWED',
+  Separated = 'SEPARATED',
 }
