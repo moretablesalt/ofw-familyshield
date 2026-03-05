@@ -145,10 +145,10 @@ export class PolicyHolderStateService {
   }
 
   readonly CIVIL_STATUS_OPTIONS: SelectOption[] = [
-    { description: 'Single', value: 'single' },
-    { description: 'Married', value: 'married' },
-    { description: 'Divorced', value: 'divorced' },
-    { description: 'Widowed', value: 'widowed' },
+    { description: 'Single', value: 'SINGLE' },
+    { description: 'Married', value: 'MARRIED' },
+    { description: 'Divorced', value: 'DIVORCED' },
+    { description: 'Widowed', value: 'WIDOWED' },
   ];
 
   readonly NATIONALITY_OPTIONS: SelectOption[] = [{ description: 'Filipino', value: 'FILIPINO' }];
