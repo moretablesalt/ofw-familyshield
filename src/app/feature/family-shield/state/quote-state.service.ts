@@ -6,7 +6,7 @@ import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
 import { PolicyHolderStateService } from '../services/form/policy-holder-state.service';
 import { QuoteApiResponse, QuoteService } from '../services/quote.service';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { debounceTime, filter, switchMap, tap } from 'rxjs';
+import { catchError, debounceTime, EMPTY, filter, finalize, switchMap, tap } from 'rxjs';
 
 export interface Quote {
   civilStatus: CivilStatus | null;
@@ -25,6 +25,10 @@ export class QuoteStateService {
 
   private quoteService = inject(QuoteService);
 
+  readonly loading = signal(false);
+
+  readonly error = signal<string | null>(null);
+
   private _apiQuote = signal<QuoteApiResponse | null>(null);
   readonly apiQuote = this._apiQuote.asReadonly();
 
@@ -34,7 +38,10 @@ export class QuoteStateService {
 
   readonly quoteResult = computed(() => this.calculator.calculate(this._request()));
 
-  readonly totalPremium = computed(() => this.quoteResult().totalPremium);
+  readonly totalPremium = computed(() => {
+    if (!this.apiQuote()) return 0;
+    return this.apiQuote()!.familyShieldPremium.total;
+  });
 
   private previousStatus: CivilStatus | null = null;
 
@@ -91,8 +98,22 @@ export class QuoteStateService {
       .pipe(
         debounceTime(400),
         filter((request) => !!request.policyHolderCivilStatus),
-        switchMap((request) => this.quoteService.quoteFamilyShield(request)),
-        tap((response) => this._apiQuote.set(response)),
+        tap(() => {
+          this.loading.set(true);
+          this.error.set(null);
+          this._apiQuote.set(null);
+        }),
+        switchMap((request) =>
+          this.quoteService.quoteFamilyShield(request).pipe(
+            tap((response) => this._apiQuote.set(response)),
+            catchError((err) => {
+              console.error(err);
+              this.error.set('Unable to compute quote. Please try again.');
+              return EMPTY;
+            }),
+            finalize(() => this.loading.set(false)),
+          ),
+        ),
         takeUntilDestroyed(),
       )
       .subscribe();
@@ -111,6 +132,8 @@ export class QuoteStateService {
   }
 
   private patch(partial: Partial<QuoteRequest>) {
+    this.loading.set(true);
+    this.error.set(null);
     this._request.update((current) => ({
       ...current,
       ...partial,
