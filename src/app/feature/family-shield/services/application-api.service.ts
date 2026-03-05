@@ -10,7 +10,9 @@ import { ApplicationResponseDto } from '../model/dto/application-response.dto';
 export class ApplicationApiService {
   private http = inject(HttpClient);
 
+  endpoint = 'http://localhost:8080/api/applications';
+
   create(request: ApplicationRequestDto): Observable<ApplicationResponseDto> {
-    return this.http.post<ApplicationResponseDto>('/api/applications', request);
+    return this.http.post<ApplicationResponseDto>(this.endpoint, request);
   }
 }
