@@ -13,6 +13,7 @@ import { buildApplicationRequest } from '../../mapper/application-request.mapper
 import { QuoteStateService } from '../../state/quote-state.service';
 import { PolicyHolderStateService } from '../../services/form/policy-holder-state.service';
 import { ApplicationResponseDto } from '../../model/dto/application-response.dto';
+import { PaymentRedirectService } from '../../services/payment-redirect.service';
 
 @Component({
   selector: 'app-review',
@@ -34,6 +35,8 @@ export class Review {
   quoteStateService = inject(QuoteStateService);
   policyHolderStateService = inject(PolicyHolderStateService);
 
+  paymentRedirect = inject(PaymentRedirectService);
+
   constructor() {
     this.stepperService.setActive(2);
   }
@@ -41,17 +44,36 @@ export class Review {
   result: ApplicationResponseDto = {
     referenceNumber: '',
     premium: '',
-    hash: '',
+    pesopayHash: '',
+    merchantId: '',
   };
 
+  private paymentUrl = 'https://test.pesopay.com/b2cDemo/eng/payment/payForm.jsp';
+
   protected continue() {
-    this.applicationApiService.create(this.buildRequest()).subscribe({
-      next: (response) => (this.result = response),
-      error: (err) => console.error(err),
+    this.applicationApiService.create(this.buildRequest()).subscribe((res) => {
+      const formData = {
+        merchantId: res.merchantId,
+        amount: res.premium,
+        orderRef: res.referenceNumber,
+        currCode: '608',
+        successUrl: 'https://yourdomain.com/payment-success',
+        failUrl: 'https://yourdomain.com/payment-fail',
+        cancelUrl: 'https://yourdomain.com/payment-cancel',
+        payType: 'N',
+        lang: 'E',
+        mpsMode: 'NIL',
+        payMethod: 'ALL',
+        secureHash: res.pesopayHash,
+        remark: '',
+        redirect: '',
+        oriCountry: '',
+        destCountry: '',
+      };
+
+      this.paymentRedirect.submit(this.paymentUrl, formData);
     });
   }
-
-  // this.router.navigate(['/family-shield/confirmation']);
 
   private buildRequest(): ApplicationRequestDto {
     return buildApplicationRequest(

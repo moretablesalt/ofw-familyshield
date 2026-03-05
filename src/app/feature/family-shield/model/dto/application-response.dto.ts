@@ -1,5 +1,6 @@
 export interface ApplicationResponseDto {
   referenceNumber: string;
   premium: string;
-  hash: string;
+  pesopayHash: string;
+  merchantId: string;
 }
