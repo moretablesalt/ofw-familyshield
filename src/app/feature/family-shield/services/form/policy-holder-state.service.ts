@@ -53,7 +53,7 @@ export class PolicyHolderStateService {
         suffix: '',
         dob: { month: '01', day: '15', year: '1990' },
         gender: 'MALE',
-        civilStatus: 'single',
+        civilStatus: 'SINGLE',
         nationality: 'FILIPINO',
       },
       contactInfo: {
