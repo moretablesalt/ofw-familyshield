@@ -24,29 +24,29 @@
 
     <div class="row">
       <span>Basic Premium</span>
-      <span>$ {{ basicPremiumPhp() | number:'1.2-2' }}</span>
+      <span>$ {{ premiumBreakdown().basicPremium }}</span>
     </div>
 
     <div class="row">
       <span>Documentary Stamp Tax</span>
-      <span>$ {{ dstPhp() | number:'1.2-2' }}</span>
+      <span>$ {{ premiumBreakdown().dst }}</span>
     </div>
 
     <div class="row">
       <span>Premium Tax</span>
-      <span>$ {{ premiumTaxPhp() | number:'1.2-2' }}</span>
+      <span>$ {{ premiumBreakdown().premiumTax }}</span>
     </div>
 
     <div class="row">
       <span>Local Gov't Tax</span>
-      <span>$ {{ lgtPhp() | number:'1.2-2' }}</span>
+      <span>$ {{ premiumBreakdown().lgt }}</span>
     </div>
 
     <div class="divider"></div>
 
     <div class="row total">
       <span>Total Amount Due</span>
-      <span>$ {{ grossPremiumPhp() | number:'1.2-2' }}</span>
+      <span>$ {{ premiumBreakdown().grossPremium }}</span>
     </div>
   </div>
 </div>

@@ -1,22 +1,24 @@
-import { Component, inject } from '@angular/core';
-import { PremiumBreakdownService } from '../../../services/premium-breakdown.service';
-import { DecimalPipe } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { QuoteStateService } from '../../../state/quote-state.service';
 
 @Component({
   selector: 'app-premium-breakdown',
-  imports: [DecimalPipe],
+  imports: [],
   templateUrl: './premium-breakdown.html',
   styleUrl: './premium-breakdown.css',
 })
 export class PremiumBreakdown {
-  private breakdown = inject(PremiumBreakdownService);
+  private quoteState = inject(QuoteStateService);
 
-  // Coverage period (from quote)
+  premiumBreakdown = computed(() => {
+    const quote = this.quoteState.apiQuote();
 
-  // USD values (from breakdown service)
-  basicPremiumPhp = this.breakdown.basicPremiumPhp;
-  grossPremiumPhp = this.breakdown.grossPremiumPhp;
-  premiumTaxPhp = this.breakdown.premiumTaxPhp;
-  lgtPhp = this.breakdown.lgtPhp;
-  dstPhp = this.breakdown.dstPhp;
+    return {
+      basicPremium: quote?.familyShieldPremium.basicPremium,
+      grossPremium: quote?.familyShieldPremium.total,
+      premiumTax: quote?.taxes.premiumTax,
+      lgt: quote?.taxes.lgt,
+      dst: quote?.taxes.docStamp,
+    };
+  });
 }

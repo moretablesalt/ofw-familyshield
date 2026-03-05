@@ -1,30 +1,31 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PremiumBreakdownModal } from './premium-breakdown-modal/premium-breakdown-modal';
 import { DecimalPipe } from '@angular/common';
-import { PremiumBreakdownService } from '../../feature/family-shield/services/premium-breakdown.service';
+import { QuoteStateService } from '../../feature/family-shield/state/quote-state.service';
 
 @Component({
   selector: 'app-premium-summary-bar',
-  imports: [DecimalPipe, PremiumBreakdownModal],
+  imports: [PremiumBreakdownModal],
   templateUrl: './premium-summary-bar.html',
   styleUrl: './premium-summary-bar.scss',
 })
 export class PremiumSummaryBar {
-  private breakdown = inject(PremiumBreakdownService);
+  private quoteState = inject(QuoteStateService);
 
   showModal = signal(false);
 
-  // INPUTS (later replace with service values)
-  grossPremium = this.breakdown.grossPremiumPhp;
+  premium = computed(() => {
+    const quote = this.quoteState.apiQuote();
 
-  dst = this.breakdown.dstPhp;
-  premTax = this.breakdown.premiumTaxPhp;
-  basicPremium = this.breakdown.basicPremiumPhp;
-  lgt = this.breakdown.lgtPhp;
+    return {
+      grossPremium: quote?.familyShieldPremium.total,
+      basicPremium: quote?.familyShieldPremium.basicPremium,
+      dst: quote?.taxes.docStamp,
+      premTax: quote?.taxes.premiumTax,
+      lgt: quote?.taxes.lgt,
+    };
+  });
 
-  /* ===============================
-     MODAL CONTROL
-     =============================== */
   openModal() {
     this.showModal.set(true);
   }

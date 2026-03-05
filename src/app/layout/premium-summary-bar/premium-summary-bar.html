@@ -1,8 +1,10 @@
+@let p = premium();
+
 <div class="premium-summary">
   <div class="premium-content">
 
     <div class="premium-total">
-      Total Premium P{{ grossPremium() | number:'1.2-2' }}
+      Total Premium P{{ p?.grossPremium }}
     </div>
 
     <a class="premium-link" (click)="openModal()">
@@ -14,10 +16,10 @@
 
 <app-premium-breakdown-modal
   [visible]="showModal()"
-  [grossUsd]="grossPremium()"
-  [basicUsd]="basicPremium()"
-  [dstUsd]="dst()"
-  [premTaxUsd]="premTax()"
-  [lgtUsd]="lgt()"
+  [grossUsd]="p?.grossPremium"
+  [basicUsd]="p?.basicPremium"
+  [dstUsd]="p?.dst"
+  [premTaxUsd]="p?.premTax"
+  [lgtUsd]="p?.lgt"
   (close)="closeModal()">
 </app-premium-breakdown-modal>
