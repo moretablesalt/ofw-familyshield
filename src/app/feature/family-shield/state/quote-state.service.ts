@@ -5,6 +5,8 @@ import { QuoteRequest } from '../model/quote-request.model';
 import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
 import { PolicyHolderStateService } from '../services/form/policy-holder-state.service';
 import { QuoteApiResponse, QuoteService } from '../services/quote.service';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { debounceTime, filter, switchMap, tap } from 'rxjs';
 
 export interface Quote {
   civilStatus: CivilStatus | null;
@@ -85,20 +87,15 @@ export class QuoteStateService {
       }
     });
 
-    effect(() => {
-      const request = this._request();
-
-      if (!request.policyHolderCivilStatus) return;
-
-      this.quoteService
-        .quoteFamilyShield({
-          ...request,
-          policyHolderCivilStatus: request.policyHolderCivilStatus,
-        })
-        .subscribe((response) => {
-          this._apiQuote.set(response);
-        });
-    });
+    toObservable(this._request)
+      .pipe(
+        debounceTime(400),
+        filter((request) => !!request.policyHolderCivilStatus),
+        switchMap((request) => this.quoteService.quoteFamilyShield(request)),
+        tap((response) => this._apiQuote.set(response)),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
   }
 
   // Utility functions

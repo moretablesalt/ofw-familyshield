@@ -34,9 +34,7 @@ export class QuoteService {
   endpoint =   'http://localhost:8080/api/v1/quotes/familyshield';
 
 
-  quoteFamilyShield(
-    request: QuoteRequest & { policyHolderCivilStatus: CivilStatus },
-  ): Observable<QuoteApiResponse> {
+  quoteFamilyShield(request: QuoteRequest): Observable<QuoteApiResponse> {
     // return this.http.post<QuoteApiResponse>('/api/v1/quotes/familyshield', request);
     return this.http.post<QuoteApiResponse>(this.endpoint, request);
   }
