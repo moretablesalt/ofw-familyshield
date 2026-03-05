@@ -20,7 +20,7 @@
       [value]="request().policyHolderCivilStatus ?? ''"
       (change)="onCivilStatusChange($event)"
     >
-      <option value="">Select civil status *</option>
+      <option value="" disabled>Select civil status *</option>
       <option value="MARRIED">Married</option>
       <option value="SINGLE">Single</option>
       <option value="WIDOWED">Widowed</option>
@@ -131,7 +131,11 @@
 
 <!-- TOTAL -->
 <div class="total">
-  Total: PHP {{ totalPremium() | number }}
+  @if (state.loading()) {
+    Calculating...
+  } @else {
+    Total: PHP {{ totalPremium() | number }}
+  }
 </div>
 
 <button class="primary" (click)="validate()" [disabled]="state.loading() || !state.isValid() || state.error()">
