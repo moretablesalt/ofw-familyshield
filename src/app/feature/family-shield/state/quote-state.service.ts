@@ -4,6 +4,7 @@ import { QuoteCalculatorService } from '../services/quote-calculator.service';
 import { QuoteRequest } from '../model/quote-request.model';
 import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
 import { PolicyHolderStateService } from '../services/form/policy-holder-state.service';
+import { QuoteApiResponse, QuoteService } from '../services/quote.service';
 
 export interface Quote {
   civilStatus: CivilStatus | null;
@@ -20,6 +21,11 @@ export class QuoteStateService {
   private calculator = inject(QuoteCalculatorService);
   private policyHolderState = inject(PolicyHolderStateService);
 
+  private quoteService = inject(QuoteService);
+
+  private _apiQuote = signal<QuoteApiResponse | null>(null);
+  readonly apiQuote = this._apiQuote.asReadonly();
+
   // This is where the fields in the quote are stored.
   private _request = signal<QuoteRequest>(this.loadInitialState());
   readonly request = this._request.asReadonly();
@@ -34,7 +40,10 @@ export class QuoteStateService {
     const request = this._request();
     if (!request.policyHolderCivilStatus) return [];
 
-    return buildBreakdown(request.policyHolderCivilStatus, this.quoteResult());
+    const apiQuote = this.apiQuote();
+    if (!apiQuote) return [];
+
+    return buildBreakdown(request.policyHolderCivilStatus, apiQuote);
   });
 
   readonly isValid = computed(() => this._request().policyHolderCivilStatus !== null);
@@ -74,6 +83,21 @@ export class QuoteStateService {
 
         this.previousStatus = current;
       }
+    });
+
+    effect(() => {
+      const request = this._request();
+
+      if (!request.policyHolderCivilStatus) return;
+
+      this.quoteService
+        .quoteFamilyShield({
+          ...request,
+          policyHolderCivilStatus: request.policyHolderCivilStatus,
+        })
+        .subscribe((response) => {
+          this._apiQuote.set(response);
+        });
     });
   }
 

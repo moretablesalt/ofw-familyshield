@@ -1,10 +1,9 @@
 import { CivilStatus } from '../../../core/enum/civil-status.enum';
-import { QUOTE_PRICING } from '../../../core/config/quote-pricing.config';
-import { QuoteResult } from '../model/quote-result.model';
+import { QuoteApiResponse } from '../services/quote.service';
 
 export interface BreakdownRow {
   label: string;
-  amount: number;
+  amount: string;
 }
 
 export interface BreakdownSection {
@@ -12,9 +11,14 @@ export interface BreakdownSection {
   rows: BreakdownRow[];
 }
 
-export function buildBreakdown(civilStatus: CivilStatus, result: QuoteResult): BreakdownSection[] {
+export function buildBreakdown(
+  civilStatus: CivilStatus,
+  response: QuoteApiResponse,
+): BreakdownSection[] {
   const sections: BreakdownSection[] = [];
   const familyRows: BreakdownRow[] = [];
+
+  const coverage = response.familyShieldCoverage;
 
   // -------------------------------
   // Family Protection Section
@@ -23,26 +27,31 @@ export function buildBreakdown(civilStatus: CivilStatus, result: QuoteResult): B
   if (civilStatus === CivilStatus.Married) {
     familyRows.push({
       label: 'Spouse',
-      amount: result.spouseCoverage,
+      amount: coverage.spouse,
     });
 
     familyRows.push({
-      label: `Children (each, up to ${QUOTE_PRICING.maxChildren})`,
-      amount: result.dependentCoverage,
+      label: 'Children (each)',
+      amount: coverage.child,
     });
   }
 
   if (civilStatus === CivilStatus.Single) {
     familyRows.push({
-      label: 'Parents & Siblings (each)',
-      amount: result.dependentCoverage,
+      label: 'Parents (each)',
+      amount: coverage.parent,
+    });
+
+    familyRows.push({
+      label: 'Siblings (each)',
+      amount: coverage.sibling,
     });
   }
 
   if (civilStatus === CivilStatus.Widowed || civilStatus === CivilStatus.Separated) {
     familyRows.push({
-      label: `Children (each, up to ${QUOTE_PRICING.maxChildren})`,
-      amount: result.dependentCoverage,
+      label: 'Children (each)',
+      amount: coverage.child,
     });
   }
 
@@ -57,13 +66,13 @@ export function buildBreakdown(civilStatus: CivilStatus, result: QuoteResult): B
   // Personal Protection Section
   // -------------------------------
 
-  if (result.personalCoverage > 0) {
+  if (coverage.ofw) {
     sections.push({
       title: 'Personal Protection',
       rows: [
         {
           label: 'OFW Personal Shield',
-          amount: result.personalCoverage,
+          amount: coverage.ofw,
         },
       ],
     });
