@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
 import { CivilStatus } from '../../../../core/enum/civil-status.enum';
@@ -18,6 +18,8 @@ export class Quote {
   readonly totalPremium = this.state.totalPremium;
   readonly breakdown = this.state.breakdown;
   readonly isValid = this.state.isValid;
+
+  isloading = this.state.loading;
 
   protected readonly CivilStatus = CivilStatus;
 

@@ -89,11 +89,24 @@
   <!-- BREAKDOWN -->
   <div class="breakdown-box">
 
+    <!-- ERROR -->
+    @if (state.error()) {
+      <div class="state-message error">
+        ⚠️ {{ state.error() }}
+      </div>
+    }
+
+    @if (isloading()) {
+      <div class="loading">
+        Calculating coverage...
+      </div>
+    }
+
     @if (!request().policyHolderCivilStatus) {
       Select civil status to see coverage summary.
     }
 
-    @if (breakdown()) {
+    @if (!isloading() && breakdown()) {
       @for (section of breakdown(); track section.title; let last = $last) {
 
         <div class="section-title">
@@ -121,6 +134,17 @@
   Total: PHP {{ totalPremium() | number }}
 </div>
 
-<button class="primary" (click)="validate()">
-  Buy Online PHP {{ totalPremium() | number }} for year 1
+<button class="primary" (click)="validate()" [disabled]="state.loading() || !state.isValid() || state.error()">
+  @if (state.loading()) {
+    Calculating...
+  }
+  @else if (!state.isValid()) {
+    Select civil status to generate quote
+  }
+  @else if (state.error()) {
+    Retry Quote
+  }
+  @else {
+    Buy Online PHP {{ totalPremium() | number }} for year 1
+  }
 </button>
