@@ -1,0 +1,101 @@
+/* Section */
+section {
+  max-width: 650px;
+  font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  flex-direction: column;
+}
+
+/* SVG Icon */
+.icon-wrapper {
+  margin-bottom: 1.5rem;
+
+}
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.fail-icon {
+  width: 80px;
+  height: 80px;
+  stroke: #e53935;
+  fill: none;
+  stroke-width: 6;
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  stroke: #1670C8;
+  stroke-width: 8;
+  fill: none;
+}
+
+.success-icon circle {
+  stroke-linecap: round;
+}
+
+.success-icon path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Headings */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1670C8;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1670C8;
+  margin-bottom: 1rem;
+}
+
+/* Subtext */
+.subtext {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 1.75rem;
+}
+
+/* Button */
+.primary-btn {
+  background-color: #1670C8;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+.primary-btn:hover {
+  background-color: #125aa3;
+}
+
+/* Note */
+.note {
+  font-size: 0.65rem;
+  color: #8b8b8b;
+  line-height: 1.4;
+  max-width: 600px;
+  margin: 0 auto;
+}

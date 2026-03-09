@@ -1,0 +1,29 @@
+<section>
+
+  <!-- SVG ICON -->
+  <div class="icon-wrapper">
+    <svg viewBox="0 0 100 100" class="fail-icon">
+      <circle cx="50" cy="50" r="40"></circle>
+      <path d="M35 35 L65 65 M65 35 L35 65"></path>
+    </svg>
+  </div>
+
+  <h1>Payment Failed</h1>
+
+  <h2>
+    Your payment could not be processed.
+  </h2>
+
+  <p class="subtext">
+    Please try again or use a different payment method.
+  </p>
+
+  <button class="primary-btn" (click)="retry()">
+    Return to Payments
+  </button>
+
+  <p class="note">
+    If the issue persists, please contact customer support.
+  </p>
+
+</section>
