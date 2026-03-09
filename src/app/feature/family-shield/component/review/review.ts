@@ -52,14 +52,17 @@ export class Review {
 
   protected continue() {
     this.applicationApiService.create(this.buildRequest()).subscribe((res) => {
+
+      const baseUrl = window.location.origin;
+
       const formData = {
         merchantId: res.merchantId,
         amount: res.premium,
         orderRef: res.referenceNumber,
         currCode: '608',
-        successUrl: 'https://yourdomain.com/payment-success',
-        failUrl: 'https://yourdomain.com/payment-fail',
-        cancelUrl: 'https://yourdomain.com/payment-cancel',
+        successUrl: baseUrl + '/family/payment-success',
+        failUrl: baseUrl + '/family/payment-fail',
+        cancelUrl: baseUrl + '/family/payment-fail',
         payType: 'N',
         lang: 'E',
         mpsMode: 'NIL',
