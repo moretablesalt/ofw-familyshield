@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { CivilStatus } from '../../../core/enum/civil-status.enum';
 import { HttpClient } from '@angular/common/http';
 import { QuoteRequest } from '../model/quote-request.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 export type QuoteApiResponse = {
   familyShieldCoverage: {
@@ -31,8 +31,8 @@ export type QuoteApiResponse = {
 export class QuoteService {
   private http = inject(HttpClient);
 
-  endpoint =   'http://localhost:8080/api/v1/quotes/familyshield';
-
+  // endpoint = 'http://localhost:8081/api/v1/quotes/familyshield';
+  endpoint = environment.HOST_URL + '/api/v1/quotes/familyshield';
 
   quoteFamilyShield(request: QuoteRequest): Observable<QuoteApiResponse> {
     // return this.http.post<QuoteApiResponse>('/api/v1/quotes/familyshield', request);
