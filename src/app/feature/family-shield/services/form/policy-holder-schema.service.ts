@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { applyEach, disabled, minLength, required, SchemaPathTree } from '@angular/forms/signals';
+import { applyEach, minLength, readonly, required, SchemaPathTree } from '@angular/forms/signals';
 import { PolicyHolder } from '../../model/policy-holder/policy-holder.model';
 
 @Injectable({
@@ -23,6 +23,7 @@ export class PolicyHolderSchemaService {
     required(path.contactInfo.address.barangay);
     required(path.contactInfo.address.zipCode);
     required(path.contactInfo.address.street);
+    readonly(path.contactInfo.address.zipCode);
 
     required(path.contactInfo.email);
     required(path.contactInfo.mobile);

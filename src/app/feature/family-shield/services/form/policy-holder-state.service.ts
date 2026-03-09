@@ -58,6 +58,7 @@ export class PolicyHolderStateService {
       },
       contactInfo: {
         address: {
+          region: 'REGION I',
           province: 'CAGAYAN VALLEY',
           city: 'MANILA',
           barangay: 'BRGY. 1',
@@ -113,6 +114,7 @@ export class PolicyHolderStateService {
   private createInitialContactInfo(): ContactInfo {
     return {
       address: {
+        region: '',
         province: '',
         city: '',
         barangay: '',

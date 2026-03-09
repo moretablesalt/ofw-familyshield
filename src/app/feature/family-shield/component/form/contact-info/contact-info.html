@@ -8,20 +8,29 @@
     <div class="card">
       <div class="card-title">🏠 Primary Address</div>
 
+      <div class="row">
+        <app-drop-down
+          [id]="'region'"
+          [fieldTree]="form.address.region"
+          [label]="'Region'"
+          [options]="regionOptions">
+        </app-drop-down>
+      </div>
+
       <!--6th row-->
       <div class="row">
         <app-drop-down
           [id]="'province'"
           [fieldTree]="form.address.province"
           [label]="'Province'"
-          [options]="provinceOptions">
+          [options]="provinceOptions()">
         </app-drop-down>
 
         <app-drop-down
           [id]="'city'"
           [fieldTree]="form.address.city"
           [label]="'City'"
-          [options]="cityOptions">
+          [options]="cityOptions()">
         </app-drop-down>
       </div>
 
@@ -31,15 +40,14 @@
           [id]="'barangay'"
           [fieldTree]="form.address.barangay"
           [label]="'Barangay'"
-          [options]="barangayOptions">
+          [options]="barangayOptions()">
         </app-drop-down>
 
-        <app-drop-down
+        <app-input
           [id]="'zipCode'"
           [fieldTree]="form.address.zipCode"
-          [label]="'Zip Code'"
-          [options]="zipCodeOptions">
-        </app-drop-down>
+          [label]="'Zip Code'">
+        </app-input>
       </div>
 
       <div class="row">
