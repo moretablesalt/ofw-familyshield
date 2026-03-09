@@ -25,32 +25,50 @@ export const routes: Routes = [
           {
             path: 'personal-details',
             loadComponent: () =>
-              import('./feature/family-shield/component/form/personal-details/personal-details').then((m) => m.PersonalDetails),
+              import('./feature/family-shield/component/form/personal-details/personal-details').then(
+                (m) => m.PersonalDetails,
+              ),
           },
           {
             path: 'contact-info',
             loadComponent: () =>
-              import('./feature/family-shield/component/form/contact-info/contact-info').then((m) => m.ContactInfo),
+              import('./feature/family-shield/component/form/contact-info/contact-info').then(
+                (m) => m.ContactInfo,
+              ),
           },
           {
             path: 'employment-details',
             loadComponent: () =>
-              import('./feature/family-shield/component/form/employment-details/employment-details').then((m) => m.EmploymentDetails),
+              import('./feature/family-shield/component/form/employment-details/employment-details').then(
+                (m) => m.EmploymentDetails,
+              ),
           },
           {
             path: 'dependents',
-            loadComponent: () => import('./feature/family-shield/component/form/dependents/dependents').then((m) => m.Dependents),
-          }
+            loadComponent: () =>
+              import('./feature/family-shield/component/form/dependents/dependents').then(
+                (m) => m.Dependents,
+              ),
+          },
         ],
       },
       {
         path: 'review',
-        loadComponent: () => import('./feature/family-shield/component/review/review').then((m) => m.Review),
+        loadComponent: () =>
+          import('./feature/family-shield/component/review/review').then((m) => m.Review),
       },
       {
-        path: 'confirmation',
-        loadComponent: () => import('./feature/family-shield/component/confirmation/confirmation').then((m) => m.Confirmation),
-      }
+        path: 'payment-success/:policyNo',
+        loadComponent: () =>
+          import('./feature/family-shield/component/payment/success/success').then(
+            (m) => m.Success,
+          ),
+      },
+      {
+        path: 'payment-fail',
+        loadComponent: () =>
+          import('./feature/family-shield/component/payment/fail/fail').then((m) => m.Fail),
+      },
     ],
   },
 ];
