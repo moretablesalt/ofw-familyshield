@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApplicationRequestDto } from '../model/dto/application-request.dto';
 import { Observable } from 'rxjs';
 import { ApplicationResponseDto } from '../model/dto/application-response.dto';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { ApplicationResponseDto } from '../model/dto/application-response.dto';
 export class ApplicationApiService {
   private http = inject(HttpClient);
 
-  endpoint = 'http://localhost:8080/api/applications';
+  endpoint = environment.HOST_URL + '/api/applications';
 
   create(request: ApplicationRequestDto): Observable<ApplicationResponseDto> {
     return this.http.post<ApplicationResponseDto>(this.endpoint, request);
