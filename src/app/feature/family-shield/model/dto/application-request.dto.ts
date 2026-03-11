@@ -13,7 +13,7 @@ export interface PolicyHolderDto {
   suffix: string | null;
   birthDate: string;
   gender: 'MALE' | 'FEMALE';
-  civilStatus: string;
+  civilStatus: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED';
   nationality: string;
   emailAddress: string;
   mobileNumber: string;

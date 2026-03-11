@@ -12,7 +12,7 @@ export interface BreakdownSection {
 }
 
 export function buildBreakdown(
-  civilStatus: CivilStatus,
+  civilStatus: string,
   response: QuoteApiResponse,
 ): BreakdownSection[] {
   const sections: BreakdownSection[] = [];

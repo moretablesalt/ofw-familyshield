@@ -9,6 +9,6 @@ export interface PersonalInfo {
     year: string;
   };
   gender: 'MALE' | 'FEMALE';
-  civilStatus: string;
+  civilStatus: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED' ;
   nationality: string;
 }
