@@ -62,21 +62,5 @@ export function buildBreakdown(
     });
   }
 
-  // -------------------------------
-  // Personal Protection Section
-  // -------------------------------
-
-  if (coverage.ofw) {
-    sections.push({
-      title: 'Personal Protection',
-      rows: [
-        {
-          label: 'OFW Personal Shield',
-          amount: coverage.ofw,
-        },
-      ],
-    });
-  }
-
   return sections;
 }
