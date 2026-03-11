@@ -1,5 +1,4 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { CivilStatus } from '../../../core/enum/civil-status.enum';
 import { QuoteCalculatorService } from '../services/quote-calculator.service';
 import { QuoteRequest } from '../model/quote-request.model';
 import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
@@ -7,12 +6,6 @@ import { PolicyHolderStateService } from '../services/form/policy-holder-state.s
 import { QuoteApiResponse, QuoteService } from '../services/quote.service';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { catchError, debounceTime, EMPTY, filter, finalize, switchMap, tap } from 'rxjs';
-
-export interface Quote {
-  civilStatus: CivilStatus | null;
-  familyLevel: number;
-  personalLevel: number;
-}
 
 const STORAGE_KEY = 'family-shield-quote-state';
 
@@ -58,7 +51,7 @@ export class QuoteStateService {
   readonly isValid = computed(() => this._request().policyHolderCivilStatus !== null);
 
   // Setters
-  setCivilStatus(status: CivilStatus) {
+  setCivilStatus(status: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED') {
     this.patch({ policyHolderCivilStatus: status });
   }
 
