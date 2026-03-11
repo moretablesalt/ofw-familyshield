@@ -106,7 +106,7 @@ export class PolicyHolderStateService {
       suffix: '',
       dob: { month: '', day: '', year: '' },
       gender: 'MALE',
-      civilStatus: '',
+      civilStatus: 'SINGLE',
       nationality: '',
     };
   }
