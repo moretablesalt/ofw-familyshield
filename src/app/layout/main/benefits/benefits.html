@@ -23,13 +23,6 @@
         (click)="activeTab = 'package2'">
         Parents & Siblings
       </button>
-
-      <button
-        class="tab-button"
-        [class.active]="activeTab === 'package3'"
-        (click)="activeTab = 'package3'">
-        OFW Protection
-      </button>
     </div>
 
     <!-- Animated Content Wrapper -->
@@ -50,38 +43,38 @@
           <tbody>
           <tr>
             <td>Accidental Death, Dismemberment or Disablement</td>
-            <td data-label="Spouse">₱100,000</td>
-            <td data-label="Each Child (max 4)">₱50,000</td>
+            <td data-label="Spouse">₱200,000</td>
+            <td data-label="Each Child (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Permanent Total Disability due to Accident</td>
             <td data-label="Spouse">₱100,000</td>
-            <td data-label="Each Child (max 4)">₱50,000</td>
+            <td data-label="Each Child (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Unprovoked Murder or Assault</td>
             <td data-label="Spouse">₱100,000</td>
-            <td data-label="Each Child (max 4)">₱50,000</td>
+            <td data-label="Each Child (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Accident Medical Reimbursement</td>
-            <td data-label="Spouse">₱10,000</td>
-            <td data-label="Each Child (max 4)">₱5,000</td>
+            <td data-label="Spouse">₱20,000</td>
+            <td data-label="Each Child (max 4)">₱10,000</td>
           </tr>
           <tr>
             <td>Accident Burial Benefit</td>
-            <td data-label="Spouse">₱10,000</td>
-            <td data-label="Each Child (max 4)">₱5,000</td>
+            <td data-label="Spouse">₱20,000</td>
+            <td data-label="Each Child (max 4)">₱10,000</td>
           </tr>
           <tr>
             <td>Daily Hospital Income (Accident – up to 30 days)</td>
-            <td data-label="Spouse">₱500/day</td>
-            <td data-label="Each Child (max 4)">₱250/day</td>
+            <td data-label="Spouse">₱1000/day</td>
+            <td data-label="Each Child (max 4)">₱500/day</td>
           </tr>
           <tr>
             <td>Daily Hospital Income (Sickness – up to 15 days)</td>
-            <td data-label="Spouse">₱500/day</td>
-            <td data-label="Each Child (max 4)">₱250/day</td>
+            <td data-label="Spouse">₱1000/day</td>
+            <td data-label="Each Child (max 4)">₱500/day</td>
           </tr>
           <tr>
             <td>Motorcycling Coverage</td>
@@ -90,16 +83,7 @@
           </tr>
           </tbody>
         </table>
-
-        <div class="footnote">
-          <strong>Annual Premium per Unit:</strong> ₱500 (inclusive of taxes)<br>
-          Minimum of 2 units per policy.<br>
-          Maximum of 5 units per policy.
-        </div>
       }
-
-
-
 
       <!-- PACKAGE 2 -->
       @if(activeTab === 'package2') {
@@ -116,38 +100,38 @@
           <tbody>
           <tr>
             <td>Accidental Death, Dismemberment or Disablement</td>
-            <td data-label="Each Parent">₱50,000</td>
-            <td data-label="Each Sibling (max 4)">₱50,000</td>
+            <td data-label="Each Parent">₱100,000</td>
+            <td data-label="Each Sibling (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Permanent Total Disability due to Accident</td>
-            <td data-label="Each Parent">₱50,000</td>
-            <td data-label="Each Sibling (max 4)">₱50,000</td>
+            <td data-label="Each Parent">₱100,000</td>
+            <td data-label="Each Sibling (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Unprovoked Murder or Assault</td>
-            <td data-label="Each Parent">₱50,000</td>
-            <td data-label="Each Sibling (max 4)">₱50,000</td>
+            <td data-label="Each Parent">₱100,000</td>
+            <td data-label="Each Sibling (max 4)">₱100,000</td>
           </tr>
           <tr>
             <td>Accident Medical Reimbursement</td>
-            <td data-label="Each Parent">₱5,000</td>
-            <td data-label="Each Sibling (max 4)">₱5,000</td>
+            <td data-label="Each Parent">₱10,000</td>
+            <td data-label="Each Sibling (max 4)">₱10,000</td>
           </tr>
           <tr>
             <td>Accident Burial Benefit</td>
-            <td data-label="Each Parent">₱5,000</td>
-            <td data-label="Each Sibling (max 4)">₱5,000</td>
+            <td data-label="Each Parent">₱10,000</td>
+            <td data-label="Each Sibling (max 4)">₱10,000</td>
           </tr>
           <tr>
             <td>Daily Hospital Income (Accident – up to 30 days)</td>
-            <td data-label="Each Parent">₱250/day</td>
-            <td data-label="Each Sibling (max 4)">₱250/day</td>
+            <td data-label="Each Parent">₱500/day</td>
+            <td data-label="Each Sibling (max 4)">₱500/day</td>
           </tr>
           <tr>
             <td>Daily Hospital Income (Sickness – up to 15 days)</td>
-            <td data-label="Each Parent">₱250/day</td>
-            <td data-label="Each Sibling (max 4)">₱250/day</td>
+            <td data-label="Each Parent">₱500/day</td>
+            <td data-label="Each Sibling (max 4)">₱500/day</td>
           </tr>
           <tr>
             <td>Motorcycling Coverage</td>
@@ -156,69 +140,7 @@
           </tr>
           </tbody>
         </table>
-        <div class="footnote">
-          <strong>Annual Premium per Unit:</strong> ₱500 (inclusive of taxes)<br>
-          Minimum of 2 units per policy.<br>
-          Maximum of 5 units per policy.
-        </div>
       }
-
-      @if(activeTab === 'package3') {
-        <h3 class="section-title">Package 3 – OFW Protection</h3>
-
-        <table class="coverage-table">
-          <thead>
-          <tr>
-            <th>Coverage</th>
-            <th>Per Unit</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Accidental Death, Dismemberment or Disablement</td>
-            <td data-label="Per Unit">₱100,000</td>
-          </tr>
-          <tr>
-            <td>Permanent Total Disability due to Accident</td>
-            <td data-label="Per Unit">₱100,000</td>
-          </tr>
-          <tr>
-            <td>Unprovoked Murder or Assault</td>
-            <td data-label="Per Unit">₱50,000</td>
-          </tr>
-          <tr>
-            <td>
-              Financial Assistance Benefit (death due to non-accidental cause)
-              <div class="small-note">
-                Underwritten by First Life Financial
-              </div>
-
-              <div class="condition-box">
-                <strong>Important Conditions:</strong><br>
-                Suicide coverage applies as follows:
-                <ul>
-                  <li>After 6 consecutive months: ₱20,000</li>
-                  <li>After 12 consecutive months: ₱100,000</li>
-                  <li>Limits form part of and not in addition to this benefit</li>
-                </ul>
-              </div>
-            </td>
-            <td data-label="Per Unit">₱100,000</td>
-          </tr>
-          <tr>
-            <td>Cash Assistance Benefit</td>
-            <td data-label="Per Unit">₱15,000</td>
-          </tr>
-          </tbody>
-        </table>
-
-        <div class="footnote">
-          <strong>Annual Premium per Unit:</strong> ₱800 (inclusive of taxes) <br>
-          Maximum of 2 units per policy.
-        </div>
-      }
-
     </div>
-
   </div>
 </div>
