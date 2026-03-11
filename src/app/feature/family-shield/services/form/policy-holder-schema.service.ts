@@ -14,7 +14,7 @@ export class PolicyHolderSchemaService {
     required(path.personalInfo.dob.day);
     required(path.personalInfo.dob.year);
     required(path.personalInfo.gender);
-    required(path.personalInfo.civilStatus);
+    readonly(path.personalInfo.civilStatus);
     required(path.personalInfo.nationality);
 
     // Contact Info
