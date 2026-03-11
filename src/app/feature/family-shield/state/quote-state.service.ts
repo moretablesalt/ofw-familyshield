@@ -36,7 +36,7 @@ export class QuoteStateService {
     return this.apiQuote()!.familyShieldPremium.total;
   });
 
-  private previousStatus: CivilStatus | null = null;
+  private previousStatus: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED' | null = null;
 
   readonly breakdown = computed(() => {
     const request = this._request();
@@ -77,6 +77,7 @@ export class QuoteStateService {
     // Reset dependents when civil status changes
     effect(() => {
       const current = this._request().policyHolderCivilStatus;
+      if (!current) return;
 
       if (current !== this.previousStatus) {
         if (this.previousStatus !== null) {
