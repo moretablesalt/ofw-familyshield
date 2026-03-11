@@ -1,6 +1,6 @@
 {
   "name": "bdoiofw-familyshield",
-  "version": "0.0.0",
+  "version": "1.0.0_SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

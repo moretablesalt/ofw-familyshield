@@ -15,76 +15,16 @@
     </div>
   </div>
 
-  <div class="mt-14">
-    <select
-      [value]="request().policyHolderCivilStatus ?? ''"
-      (change)="onCivilStatusChange($event)"
-    >
-      <option value="" disabled>Select civil status *</option>
-      <option value="MARRIED">Married</option>
-      <option value="SINGLE">Single</option>
-      <option value="WIDOWED">Widowed</option>
-      <option value="SEPARATED">Separated</option>
-    </select>
-  </div>
-</div>
-
-<!-- STEP 2 -->
-<div class="step">
-  <div class="step-header">
-    <div class="step-number">2</div>
-    <div>
-      <div class="step-title">Customize Your Plan</div>
-      <div class="step-desc">
-        Choose your family and personal protection levels.
-      </div>
-    </div>
-  </div>
-
-  <!-- FAMILY -->
-  <div class="option-row">
-    <div class="option-label">
-      <div class="option-label-title">Family Protection Level</div>
-      <div class="option-label-sub">
-        Level 1 starts at PHP 1,000 (increments of PHP 500)
-      </div>
-    </div>
-
-    <div class="option-control">
-      <select
-        [value]="request().familyUnit"
-        (change)="onFamilyLevelChange($event)"
-      >
-        <option value="2">Level 1 – Basic</option>
-        <option value="3">Level 2 – Enhanced</option>
-        <option value="4">Level 3 – Extended</option>
-        <option value="5">Level 4 – Maximum Safety Net</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- PERSONAL -->
-  <div class="option-row">
-    <div class="option-label">
-      <div class="option-label-title">
-        OFW Personal Protection (Optional)
-      </div>
-      <div class="option-label-sub">
-        PHP 800 per level (0–2)
-      </div>
-    </div>
-
-    <div class="option-control">
-      <select
-        [value]="request().ofwUnit"
-        (change)="onPersonalLevelChange($event)"
-      >
-        <option value="0">None</option>
-        <option value="1">Level 1 – 100,000</option>
-        <option value="2">Level 2 – 200,000</option>
-      </select>
-    </div>
-  </div>
+  <select
+    [value]="request().policyHolderCivilStatus ?? ''"
+    (change)="onCivilStatusChange($event)"
+  >
+    <option value="" disabled>Select civil status *</option>
+    <option value="MARRIED">Married</option>
+    <option value="SINGLE">Single</option>
+    <option value="WIDOWED">Widowed</option>
+    <option value="SEPARATED">Separated</option>
+  </select>
 
   <!-- BREAKDOWN -->
   <div class="breakdown-box">

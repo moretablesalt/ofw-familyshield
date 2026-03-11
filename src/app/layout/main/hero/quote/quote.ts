@@ -36,20 +36,6 @@ export class Quote {
     this.state.setCivilStatus(value);
   }
 
-  onFamilyLevelChange(event: Event) {
-    const select = event.target as HTMLSelectElement;
-    const level = Number(select.value);
-
-    this.state.setFamilyLevel(level);
-  }
-
-  onPersonalLevelChange(event: Event) {
-    const select = event.target as HTMLSelectElement;
-    const level = Number(select.value);
-
-    this.state.setPersonalLevel(level);
-  }
-
   validate() {
     if (!this.isValid()) return;
     this.router.navigate(['/family-shield/form']);
