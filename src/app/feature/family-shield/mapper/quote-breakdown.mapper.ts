@@ -62,5 +62,10 @@ export function buildBreakdown(
     });
   }
 
+  sections.push({
+    title: '** Scroll down to see full coverage details',
+    rows: [],
+  });
+
   return sections;
 }
