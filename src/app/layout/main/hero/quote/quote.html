@@ -79,16 +79,5 @@
 </div>
 
 <button class="primary" (click)="validate()" [disabled]="state.loading() || !state.isValid() || state.error()">
-  @if (state.loading()) {
-    Calculating...
-  }
-  @else if (!state.isValid()) {
-    Select civil status to generate quote
-  }
-  @else if (state.error()) {
-    Retry Quote
-  }
-  @else {
-    Buy Online PHP {{ totalPremium() | number }} for year 1
-  }
+  Buy Now
 </button>
