@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { WithField } from '@angular/forms/signals';
+import { WithFieldTree } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-field-error-message',
@@ -9,6 +9,6 @@ import { WithField } from '@angular/forms/signals';
 })
 export class FieldErrorMessage {
 
-  errors = input.required<WithField<any>[]>();
+  errors = input.required<WithFieldTree<any>[]>();
 
 }
