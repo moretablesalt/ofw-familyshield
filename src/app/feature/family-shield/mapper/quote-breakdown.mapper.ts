@@ -12,7 +12,7 @@ export interface BreakdownSection {
 }
 
 export function buildBreakdown(
-  civilStatus: CivilStatus,
+  civilStatus: string,
   response: QuoteApiResponse,
 ): BreakdownSection[] {
   const sections: BreakdownSection[] = [];
@@ -62,21 +62,10 @@ export function buildBreakdown(
     });
   }
 
-  // -------------------------------
-  // Personal Protection Section
-  // -------------------------------
-
-  if (coverage.ofw) {
-    sections.push({
-      title: 'Personal Protection',
-      rows: [
-        {
-          label: 'OFW Personal Shield',
-          amount: coverage.ofw,
-        },
-      ],
-    });
-  }
+  sections.push({
+    title: '** Scroll down to see full coverage details',
+    rows: [],
+  });
 
   return sections;
 }

@@ -19,7 +19,7 @@ export class PolicyHolderInfo {
   });
 
   dobPretty = computed(() => {
-    const dob = this.formService.state.formModel().personalInfo.dob;
+    const dob = this.formService.state.formModel().personalInfo.birthDate;
 
     if (!dob.month || !dob.day || !dob.year) return '';
 

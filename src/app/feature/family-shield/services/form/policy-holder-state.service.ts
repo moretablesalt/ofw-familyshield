@@ -51,7 +51,7 @@ export class PolicyHolderStateService {
         middleName: 'Santos',
         lastName: 'Dela Cruz',
         suffix: '',
-        dob: { month: '01', day: '15', year: '1990' },
+        birthDate: { month: '01', day: '15', year: '1990' },
         gender: 'MALE',
         civilStatus: 'SINGLE',
         nationality: 'FILIPINO',
@@ -104,9 +104,9 @@ export class PolicyHolderStateService {
       middleName: '',
       lastName: '',
       suffix: '',
-      dob: { month: '', day: '', year: '' },
+      birthDate: { month: '', day: '', year: '' },
       gender: 'MALE',
-      civilStatus: '',
+      civilStatus: 'SINGLE',
       nationality: '',
     };
   }
@@ -149,7 +149,7 @@ export class PolicyHolderStateService {
   readonly CIVIL_STATUS_OPTIONS: SelectOption[] = [
     { description: 'Single', value: 'SINGLE' },
     { description: 'Married', value: 'MARRIED' },
-    { description: 'Divorced', value: 'DIVORCED' },
+    { description: 'Separated', value: 'SEPARATED' },
     { description: 'Widowed', value: 'WIDOWED' },
   ];
 

@@ -5,6 +5,7 @@ import { DropDown, SelectOption } from '../../../../../shared/ui/drop-down/drop-
 import { Input } from '../../../../../shared/ui/input/input';
 import { OverlayService } from '../../../../../shared/ui/overlay/overlay.service';
 import { PolicyHolderStateService } from '../../../services/form/policy-holder-state.service';
+import { QuoteStateService } from '../../../state/quote-state.service';
 
 @Component({
   selector: 'app-personal-details',
@@ -14,6 +15,7 @@ import { PolicyHolderStateService } from '../../../services/form/policy-holder-s
 })
 export class PersonalDetails {
   formService = inject(FormService);
+  private readonly quoteState = inject(QuoteStateService);
   private readonly state = inject(PolicyHolderStateService);
   router = inject(Router);
   overlayService = inject(OverlayService);
@@ -21,6 +23,13 @@ export class PersonalDetails {
   model = this.state.formModel;
 
   form = this.formService.form.personalInfo;
+
+  constructor() {
+    const civilStatus = this.quoteState.request().policyHolderCivilStatus;
+    if (civilStatus) {
+      this.form.civilStatus().value.set(civilStatus);
+    }
+  }
 
   readonly genderOptions: SelectOption[] = [
     { description: 'Male', value: 'MALE' },
@@ -39,9 +48,9 @@ export class PersonalDetails {
     if (!this.form().valid()) {
       this.form.firstName().markAsTouched();
       this.form.lastName().markAsTouched();
-      this.form.dob.day().markAsTouched();
-      this.form.dob.month().markAsTouched();
-      this.form.dob.year().markAsTouched();
+      this.form.birthDate.day().markAsTouched();
+      this.form.birthDate.month().markAsTouched();
+      this.form.birthDate.year().markAsTouched();
       this.form.gender().markAsTouched();
       this.form.civilStatus().markAsTouched();
       this.form.nationality().markAsTouched();
@@ -56,7 +65,9 @@ export class PersonalDetails {
 
     // Fake delay (800ms–1200ms feels natural)
     setTimeout(() => {
-      this.router.navigate(['/family-shield/form/contact-info']).then(() => this.overlayService.hide());
+      this.router
+        .navigate(['/family-shield/form/contact-info'])
+        .then(() => this.overlayService.hide());
     }, 900);
   }
 }

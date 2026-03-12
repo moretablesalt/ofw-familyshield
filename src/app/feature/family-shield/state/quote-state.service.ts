@@ -1,5 +1,4 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { CivilStatus } from '../../../core/enum/civil-status.enum';
 import { QuoteCalculatorService } from '../services/quote-calculator.service';
 import { QuoteRequest } from '../model/quote-request.model';
 import { buildBreakdown } from '../mapper/quote-breakdown.mapper';
@@ -7,12 +6,6 @@ import { PolicyHolderStateService } from '../services/form/policy-holder-state.s
 import { QuoteApiResponse, QuoteService } from '../services/quote.service';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { catchError, debounceTime, EMPTY, filter, finalize, switchMap, tap } from 'rxjs';
-
-export interface Quote {
-  civilStatus: CivilStatus | null;
-  familyLevel: number;
-  personalLevel: number;
-}
 
 const STORAGE_KEY = 'family-shield-quote-state';
 
@@ -43,7 +36,7 @@ export class QuoteStateService {
     return this.apiQuote()!.familyShieldPremium.total;
   });
 
-  private previousStatus: CivilStatus | null = null;
+  private previousStatus: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED' | null = null;
 
   readonly breakdown = computed(() => {
     const request = this._request();
@@ -58,7 +51,7 @@ export class QuoteStateService {
   readonly isValid = computed(() => this._request().policyHolderCivilStatus !== null);
 
   // Setters
-  setCivilStatus(status: CivilStatus) {
+  setCivilStatus(status: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED') {
     this.patch({ policyHolderCivilStatus: status });
   }
 
@@ -84,6 +77,7 @@ export class QuoteStateService {
     // Reset dependents when civil status changes
     effect(() => {
       const current = this._request().policyHolderCivilStatus;
+      if (!current) return;
 
       if (current !== this.previousStatus) {
         if (this.previousStatus !== null) {

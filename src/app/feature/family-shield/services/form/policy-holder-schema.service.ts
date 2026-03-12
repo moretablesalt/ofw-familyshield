@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { applyEach, minLength, readonly, required, SchemaPathTree } from '@angular/forms/signals';
 import { PolicyHolder } from '../../model/policy-holder/policy-holder.model';
+import { ageByRelationshipToInsured } from '../../../../shared/validator/age-by-relationship.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,11 @@ export class PolicyHolderSchemaService {
     // Personal Info
     required(path.personalInfo.firstName);
     required(path.personalInfo.lastName);
-    required(path.personalInfo.dob.month);
-    required(path.personalInfo.dob.day);
-    required(path.personalInfo.dob.year);
+    required(path.personalInfo.birthDate.month);
+    required(path.personalInfo.birthDate.day);
+    required(path.personalInfo.birthDate.year);
     required(path.personalInfo.gender);
-    required(path.personalInfo.civilStatus);
+    readonly(path.personalInfo.civilStatus);
     required(path.personalInfo.nationality);
 
     // Contact Info
@@ -44,6 +45,7 @@ export class PolicyHolderSchemaService {
       required(dependent.birthDate.month)
       required(dependent.birthDate.day)
       required(dependent.birthDate.year)
+      ageByRelationshipToInsured(dependent);
     })
 
   }

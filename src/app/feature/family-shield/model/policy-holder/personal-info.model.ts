@@ -1,14 +1,12 @@
+import { DateModel } from '../date.model';
+
 export interface PersonalInfo {
   firstName: string;
   middleName: string;
   lastName: string;
   suffix: string;
-  dob: {
-    month: string;
-    day: string;
-    year: string;
-  };
+  birthDate: DateModel;
   gender: 'MALE' | 'FEMALE';
-  civilStatus: string;
+  civilStatus: 'SINGLE' | 'MARRIED' | 'WIDOWED' | 'SEPARATED';
   nationality: string;
 }
