@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { applyEach, minLength, readonly, required, SchemaPathTree } from '@angular/forms/signals';
 import { PolicyHolder } from '../../model/policy-holder/policy-holder.model';
+import { ageByRelationshipToInsured } from '../../../../shared/validator/age-by-relationship.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,7 @@ export class PolicyHolderSchemaService {
       required(dependent.birthDate.month)
       required(dependent.birthDate.day)
       required(dependent.birthDate.year)
+      ageByRelationshipToInsured(dependent);
     })
 
   }
