@@ -10,9 +10,9 @@ export class PolicyHolderSchemaService {
     // Personal Info
     required(path.personalInfo.firstName);
     required(path.personalInfo.lastName);
-    required(path.personalInfo.dob.month);
-    required(path.personalInfo.dob.day);
-    required(path.personalInfo.dob.year);
+    required(path.personalInfo.birthDate.month);
+    required(path.personalInfo.birthDate.day);
+    required(path.personalInfo.birthDate.year);
     required(path.personalInfo.gender);
     readonly(path.personalInfo.civilStatus);
     required(path.personalInfo.nationality);

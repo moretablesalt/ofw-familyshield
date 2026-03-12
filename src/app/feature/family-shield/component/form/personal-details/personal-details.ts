@@ -48,9 +48,9 @@ export class PersonalDetails {
     if (!this.form().valid()) {
       this.form.firstName().markAsTouched();
       this.form.lastName().markAsTouched();
-      this.form.dob.day().markAsTouched();
-      this.form.dob.month().markAsTouched();
-      this.form.dob.year().markAsTouched();
+      this.form.birthDate.day().markAsTouched();
+      this.form.birthDate.month().markAsTouched();
+      this.form.birthDate.year().markAsTouched();
       this.form.gender().markAsTouched();
       this.form.civilStatus().markAsTouched();
       this.form.nationality().markAsTouched();

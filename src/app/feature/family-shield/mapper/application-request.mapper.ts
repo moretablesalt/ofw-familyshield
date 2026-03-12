@@ -16,7 +16,7 @@ export function buildApplicationRequest(
       middleName: p.middleName || null,
       lastName: p.lastName,
       suffix: p.suffix || null,
-      birthDate: buildDate(p.dob),
+      birthDate: buildDate(p.birthDate),
       gender: p.gender,
       civilStatus: p.civilStatus,
       nationality: p.nationality,

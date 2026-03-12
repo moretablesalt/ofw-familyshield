@@ -37,9 +37,9 @@ export class PolicyHolderPersistenceService {
         personalInfo: {
           ...defaults.personalInfo,
           ...parsed.personalInfo,
-          dob: {
-            ...defaults.personalInfo.dob,
-            ...parsed.personalInfo?.dob,
+          birthDate: {
+            ...defaults.personalInfo.birthDate,
+            ...parsed.personalInfo?.birthDate,
           },
         },
 
