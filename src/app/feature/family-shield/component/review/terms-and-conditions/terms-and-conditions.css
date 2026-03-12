@@ -33,9 +33,10 @@
 }
 
 /* ================= CHECKBOX GROUP ================= */
-.checkbox-group label {
+.checkbox-group {
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
   gap: 10px;
   font-size: 13px;
   margin-bottom: 12px;
@@ -51,4 +52,10 @@
 .checkbox-group a {
   color: #1a73b8;
   text-decoration: underline;
+}
+
+label {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
 }
